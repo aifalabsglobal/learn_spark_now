@@ -65,7 +65,7 @@ while n < 3:
           <span className="w-1.5 h-6 bg-python rounded-full" />
           List / Dict Comprehensions
         </h3>
-        <p className="text-slate-400 text-sm mb-4">A comprehension builds a list (or dict/set) in one expression: <code className="text-slate-300">[expr for item in iterable]</code> or with a filter <code className="text-slate-300">[expr for item in iterable if condition]</code>. Dict comprehensions use <code className="text-slate-300">{k: v for ...}</code>.</p>
+        <p className="text-slate-400 text-sm mb-4">A comprehension builds a list (or dict/set) in one expression: <code className="text-slate-300">[expr for item in iterable]</code> or with a filter <code className="text-slate-300">[expr for item in iterable if condition]</code>. Dict comprehensions use <code className="text-slate-300">{'{k: v for ...}'}</code>.</p>
         <CodeBlock
           title="Comprehensions"
           code={`squares = [x ** 2 for x in range(5)]   # [0, 1, 4, 9, 16]
