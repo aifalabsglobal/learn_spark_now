@@ -14,6 +14,10 @@ export default function DatabricksWorkspace() {
         The <strong>workspace</strong> is your project folder in the cloud. <strong>Notebooks</strong> are where you write and run code (Python, SQL, etc.). A <strong>cluster</strong> is the set of machines that run your code — you pick the size and Databricks starts and stops it for you.
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        The workspace holds your notebooks, folders, and (optionally) Git repos. To run code you attach a cluster to a notebook; the cluster provides the Spark driver and executors. This section covers cluster configuration, how notebooks execute on the cluster, and how to connect Repos for version control and CI/CD.
+      </p>
+
       <div id="databricks-clusters" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-databricks rounded-full" />
@@ -67,7 +71,7 @@ Notebook (output)`}
           Repos &amp; Git
         </h3>
         <p className="text-slate-400 text-sm mb-4">
-          Connect a Git repo (GitHub, GitLab, etc.) to sync notebooks and scripts. Use <strong className="text-slate-300">Repos</strong> in the workspace to clone, branch, and run CI/CD from the same UI.
+          Connect a Git repo (GitHub, GitLab, Azure Repos, etc.) to the workspace so notebooks and scripts are synced with your repo. <strong className="text-slate-300">Repos</strong> lets you clone, create branches, commit, and push from the Databricks UI. Jobs can reference a repo and branch so that production runs use versioned code; this is the basis for CI/CD with Databricks.
         </p>
       </div>
     </section>

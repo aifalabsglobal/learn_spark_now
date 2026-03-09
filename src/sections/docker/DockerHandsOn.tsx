@@ -1,4 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function DockerHandsOn() {
   return (
@@ -8,6 +9,14 @@ export default function DockerHandsOn() {
         <div className="h-px flex-1 bg-gradient-to-r from-docker/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Hands-on: Install & Run</h2>
+
+      <Callout type="info" title="👋 In Plain English">
+        You’ll install Docker, run a pre-built image (e.g. Nginx), build your own image from a Dockerfile, and use basic commands to inspect containers and view logs. This gives you a repeatable dev and run environment.
+      </Callout>
+
+      <p className="text-slate-400 text-sm mb-6">
+        Follow the steps in order: install Docker and confirm it works with <code className="text-slate-300">hello-world</code>, run a real service (Nginx) with port mapping, then build a custom image from a Dockerfile and run it. Finish by inspecting running containers, viewing logs, and (optionally) opening a shell inside a container.
+      </p>
 
       <div id="docker-install" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">

@@ -1,4 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function ADFConcepts() {
   return (
@@ -9,8 +10,12 @@ export default function ADFConcepts() {
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Top-Level Concepts</h2>
 
+      <Callout type="info" title="Microsoft Learn">
+        Per <a href="https://learn.microsoft.com/en-us/azure/data-factory/introduction#top-level-concepts" target="_blank" rel="noopener noreferrer" className="text-adf-light underline hover:no-underline">Microsoft Learn</a>, an Azure Data Factory instance is composed of pipelines, activities, datasets, linked services, integration runtime, triggers, and parameters. Understanding these is required before building pipelines.
+      </Callout>
+
       <p className="text-slate-400 text-sm mb-6">
-        Per <a href="https://learn.microsoft.com/en-us/azure/data-factory/introduction#top-level-concepts" target="_blank" rel="noopener noreferrer" className="text-adf-light underline hover:no-underline">Microsoft Learn</a>, an Azure Data Factory instance is composed of these key components:
+        An Azure Data Factory instance is the top-level resource in your subscription. Inside it you create <strong className="text-slate-300">pipelines</strong> (which group <strong className="text-slate-300">activities</strong>), <strong className="text-slate-300">datasets</strong> (which point to data in stores), and <strong className="text-slate-300">linked services</strong> (which hold connection and auth details). Pipelines run on an <strong className="text-slate-300">integration runtime</strong> and are started by <strong className="text-slate-300">triggers</strong> or manually. This section defines each concept and how they relate.
       </p>
 
       <div id="adf-pipeline" className="mb-8">
@@ -19,7 +24,7 @@ export default function ADFConcepts() {
           Pipeline
         </h3>
         <p className="text-slate-400 text-sm mb-4">
-          A <strong className="text-slate-300">pipeline</strong> is a logical grouping of activities that perform a unit of work. You manage and deploy the pipeline as a set; activities can run sequentially or in parallel. (Soft limit: 120 activities per pipeline.)
+          A <strong className="text-slate-300">pipeline</strong> is a logical grouping of activities that together perform a unit of work (e.g. “copy from Blob to SQL and then run a stored procedure”). You manage and deploy the pipeline as a single set; activities inside can run sequentially, in parallel, or conditional on the outcome of previous activities. There is a soft limit of about 120 activities per pipeline; for very large workflows, split into multiple pipelines and chain them.
         </p>
       </div>
 
@@ -29,7 +34,7 @@ export default function ADFConcepts() {
           Activity
         </h3>
         <p className="text-slate-400 text-sm mb-4">
-          An <strong className="text-slate-300">activity</strong> is a processing step. Data Factory has three groups: <strong className="text-slate-300">data movement</strong> (e.g. Copy), <strong className="text-slate-300">data transformation</strong> (Data Flow, Hive, Databricks, stored procedure), and <strong className="text-slate-300">control flow</strong> (ForEach, If Condition, Lookup, Wait).
+          An <strong className="text-slate-300">activity</strong> is a single processing step. Data Factory groups them into: <strong className="text-slate-300">data movement</strong> (e.g. Copy activity), <strong className="text-slate-300">data transformation</strong> (Mapping Data Flow, Hive, Databricks, stored procedure, etc.), and <strong className="text-slate-300">control flow</strong> (ForEach, If Condition, Lookup, Wait, Until). Each activity can have input and output datasets (for data activities) or no datasets (for control activities). Activities are connected so that output of one can be input or condition for the next.
         </p>
       </div>
 
@@ -39,7 +44,7 @@ export default function ADFConcepts() {
           Datasets and Linked Services
         </h3>
         <p className="text-slate-400 text-sm mb-4">
-          <strong className="text-slate-300">Datasets</strong> represent data structures in stores (tables, files, folders) and point to the data used as activity inputs/outputs. <strong className="text-slate-300">Linked services</strong> are like connection strings: they define how Data Factory connects to a data store or compute resource (e.g. Azure Storage, SQL Server, HDInsight).
+          <strong className="text-slate-300">Datasets</strong> represent the structure of data in a store (e.g. a table name, file path, or folder). They reference a <strong className="text-slate-300">linked service</strong> for the connection and add structure (schema, format) and optional parameters (e.g. dynamic path). <strong className="text-slate-300">Linked services</strong> are like connection strings: they define how Data Factory connects to a data store (Azure Storage, SQL Server, REST API, etc.) or a compute resource (e.g. Azure Databricks, HDInsight). One linked service can be used by many datasets.
         </p>
         <DiagramBlock title="Relationship">
 {`Pipeline → Activity → Input/Output Datasets
@@ -53,7 +58,7 @@ Linked Service → connection to store or compute`}
           Integration Runtime, Triggers, Parameters
         </h3>
         <p className="text-slate-400 text-sm mb-4">
-          <strong className="text-slate-300">Integration Runtime (IR)</strong> is the bridge between activities and linked services; it provides the compute environment (Azure IR, self-hosted IR). <strong className="text-slate-300">Triggers</strong> determine when a pipeline run is started (schedule, event, manual). <strong className="text-slate-300">Parameters</strong> and <strong className="text-slate-300">variables</strong> allow you to pass configuration and temporary values through pipelines.
+          The <strong className="text-slate-300">Integration Runtime (IR)</strong> is the compute bridge between the pipeline and the linked services. Use <strong className="text-slate-300">Azure IR</strong> when source and sink are in Azure or publicly reachable; use <strong className="text-slate-300">self-hosted IR</strong> when you need to reach on-premises or network-restricted sources. <strong className="text-slate-300">Triggers</strong> start pipeline runs: schedule (cron), event (e.g. blob created), or manual. <strong className="text-slate-300">Parameters</strong> and <strong className="text-slate-300">variables</strong> let you pass configuration (e.g. environment, table name) and hold temporary values between activities.
         </p>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function GitUndo() {
   return (
@@ -8,6 +9,14 @@ export default function GitUndo() {
         <div className="h-px flex-1 bg-gradient-to-r from-git/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Undo &amp; Clean Up</h2>
+
+      <Callout type="info" title="👋 In Plain English">
+        <strong>Reset</strong> moves the current branch pointer (and optionally discards changes). <strong>Revert</strong> creates a new commit that undoes a previous one — safe for shared branches. <strong>Stash</strong> temporarily shelves uncommitted changes so you can switch branches or pull cleanly.
+      </Callout>
+
+      <p className="text-slate-400 text-sm mb-6">
+        Use <code className="text-slate-300">git reset</code> when you want to undo commits on a branch you haven’t shared (or when you’re sure no one else has pulled). Use <code className="text-slate-300">git revert</code> when the commit is already on the remote — it keeps history intact. Use <code className="text-slate-300">git stash</code> to save work-in-progress without committing. Always use a <code className="text-slate-300">.gitignore</code> so build artifacts and secrets are never committed.
+      </p>
 
       <div id="git-reset-revert" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">

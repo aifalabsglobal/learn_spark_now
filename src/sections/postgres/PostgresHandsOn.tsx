@@ -14,6 +14,10 @@ export default function PostgresHandsOn() {
         <strong>psql</strong> is the command-line client for PostgreSQL. You type SQL and run it; you can also load a sample database and practice queries on real-looking data.
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        This section walks you through connecting with <code className="text-slate-300">psql</code>, useful meta-commands, loading or creating sample data, and a short assignment so you can practice SELECT, GROUP BY, and ALTER/UPDATE.
+      </p>
+
       <div id="postgres-psql" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-postgres rounded-full" />
@@ -43,7 +47,7 @@ export default function PostgresHandsOn() {
           <span className="w-1.5 h-6 bg-postgres rounded-full" />
           Load Sample Data
         </h3>
-        <p className="text-slate-400 text-sm mb-4">PostgreSQL has a demo database you can download: <a href="https://www.postgresql.org/docs/current/tutorial-populate.html" className="text-postgres-light hover:underline">tutorial</a>, or use <strong>pagila</strong> / <strong>dvdrental</strong> for a small movie-rental schema.</p>
+        <p className="text-slate-400 text-sm mb-4">You can use the official <a href="https://www.postgresql.org/docs/current/tutorial-populate.html" className="text-postgres-light hover:underline">tutorial</a> to populate a sample schema, or install the <strong>pagila</strong> / <strong>dvdrental</strong> sample database for a small movie-rental schema with tables like <code className="text-slate-300">film</code>, <code className="text-slate-300">customer</code>, <code className="text-slate-300">rental</code>. For a minimal start, create a small table and insert a few rows as below.</p>
         <CodeBlock
           title="Create and populate a tiny table"
           code={`CREATE TABLE products (id SERIAL PRIMARY KEY, name TEXT, price NUMERIC(10,2));
@@ -58,11 +62,11 @@ SELECT * FROM products;`}
           <span className="w-1.5 h-6 bg-postgres rounded-full" />
           Mini Assignment
         </h3>
-        <p className="text-slate-400 text-sm mb-4">Using the <code className="text-slate-300">products</code> table above (or any sample DB):</p>
+        <p className="text-slate-400 text-sm mb-4">Using the <code className="text-slate-300">products</code> table above (or any sample DB), practice the following. Each task reinforces DML and DDL from earlier sections.</p>
         <ul className="text-sm text-slate-400 space-y-2 list-decimal list-inside">
-          <li>Write a query that returns the product with the highest price.</li>
-          <li>Add a <code className="text-slate-300">category</code> column and update one row.</li>
-          <li>Write a query using <code className="text-slate-300">GROUP BY category</code> with <code className="text-slate-300">COUNT</code> and <code className="text-slate-300">AVG(price)</code>.</li>
+          <li>Write a query that returns the product with the highest price (e.g. <code className="text-slate-300">ORDER BY price DESC LIMIT 1</code> or a subquery with <code className="text-slate-300">MAX(price)</code>).</li>
+          <li>Add a <code className="text-slate-300">category</code> column with <code className="text-slate-300">ALTER TABLE products ADD COLUMN category VARCHAR(50);</code> then <code className="text-slate-300">UPDATE products SET category = 'Electronics' WHERE id = 1;</code> (or similar).</li>
+          <li>Write a query using <code className="text-slate-300">GROUP BY category</code> with <code className="text-slate-300">COUNT(*)</code> and <code className="text-slate-300">AVG(price)</code> to summarize by category.</li>
         </ul>
       </div>
     </section>

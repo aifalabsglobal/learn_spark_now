@@ -15,6 +15,10 @@ export default function ADFPipelinesActivities() {
         </a>
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        Pipelines contain activities that run in sequence or in parallel. Data movement is done with Copy; transformation uses Data Flow, Databricks, or other compute activities; control flow uses ForEach, If, Lookup, etc. This section summarizes the three activity groups and when to use each.
+      </p>
+
       <div id="adf-overview" className="mb-8">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-adf rounded-full" />
