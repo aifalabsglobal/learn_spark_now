@@ -4,6 +4,7 @@ import {
   Brain, Gauge, FolderKanban, ChevronRight, ChevronDown, Layers
 } from 'lucide-react';
 import { logger } from './utils/logger';
+import { APP, LEGAL, SUPPORT } from './config/app';
 import Sidebar, { type Course } from './components/Sidebar';
 import Fundamentals from './sections/Fundamentals';
 import Architecture from './sections/Architecture';
@@ -189,6 +190,12 @@ function App() {
     mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Dynamic document title for enterprise (accessibility & tabs)
+  useEffect(() => {
+    const courseTitle = course === 'python' ? 'Python' : course === 'postgres' ? 'PostgreSQL & SQL' : course === 'docker' ? 'Docker' : course === 'git' ? 'Git' : course === 'kafka' ? 'Apache Kafka' : course === 'datafactory' ? 'Azure Data Factory' : course === 'databricks' ? 'Databricks' : 'Apache Spark';
+    document.title = `${courseTitle} — ${APP.name}`;
+  }, [course]);
+
   // Close course dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -276,6 +283,10 @@ function App() {
 
   return (
     <div className="h-screen flex bg-slate-950 text-slate-200 overflow-hidden">
+      {/* Skip to main content — enterprise a11y */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       {/* Progress bar */}
       <div className="fixed top-0 left-0 right-0 h-0.5 z-50 bg-slate-800">
         <div
@@ -576,7 +587,7 @@ function App() {
         </div>
 
         {/* Content Sections */}
-        <main className="max-w-5xl mx-auto px-6 pb-20">
+        <main id="main-content" className="max-w-5xl mx-auto px-6 pb-20" role="main">
           {course === 'python' ? (
             <>
               <PythonFundamentals />
@@ -759,10 +770,12 @@ function App() {
       {/* Scroll to top button */}
       {showScrollTop && (
         <button
+          type="button"
           onClick={scrollToTop}
-          className={`fixed bottom-6 right-6 p-3 rounded-full text-white shadow-lg transition-all z-30 animate-fade-in-up ${course === 'python' ? 'bg-python hover:bg-python-dark' : course === 'postgres' ? 'bg-postgres hover:bg-postgres-dark' : course === 'kafka' ? 'bg-kafka hover:bg-kafka-dark' : course === 'datafactory' ? 'bg-adf hover:bg-adf-dark' : course === 'databricks' ? 'bg-databricks hover:bg-databricks-dark' : course === 'docker' ? 'bg-docker hover:bg-docker-dark' : course === 'git' ? 'bg-git hover:bg-git-dark' : 'bg-spark hover:bg-spark-dark shadow-spark/20'}`}
+          aria-label="Scroll to top"
+          className={`fixed bottom-6 right-6 p-3 rounded-full text-white shadow-lg transition-all z-30 animate-fade-in-up focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${course === 'python' ? 'bg-python hover:bg-python-dark' : course === 'postgres' ? 'bg-postgres hover:bg-postgres-dark' : course === 'kafka' ? 'bg-kafka hover:bg-kafka-dark' : course === 'datafactory' ? 'bg-adf hover:bg-adf-dark' : course === 'databricks' ? 'bg-databricks hover:bg-databricks-dark' : course === 'docker' ? 'bg-docker hover:bg-docker-dark' : course === 'git' ? 'bg-git hover:bg-git-dark' : 'bg-spark hover:bg-spark-dark shadow-spark/20'}`}
         >
-          <ArrowUp size={20} />
+          <ArrowUp size={20} aria-hidden />
         </button>
       )}
     </div>

@@ -164,6 +164,60 @@ pre::-webkit-scrollbar-track {
   background: rgba(226, 90, 28, 0.05);
 }
 
+/* Skip link — enterprise a11y (visible on focus only) */
+.skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background: var(--color-spark);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  outline: none;
+  box-shadow: 0 0 0 2px white;
+}
+
+/* Focus visible — enterprise keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--color-spark);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print — hide chrome, show content */
+@media print {
+  .sidebar-scroll, [class*="fixed"], .scroll-smooth button[aria-label="Scroll to top"] {
+    display: none !important;
+  }
+}
+
 /* Diagram box */
 .diagram-box {
   font-family: var(--font-mono);
