@@ -11,6 +11,30 @@
   --color-kafka-light: #2DD4A8;
   --color-kafka-dark: #0A9B6E;
   --color-kafka-bg: #ECFDF8;
+  --color-databricks: #FF3621;
+  --color-databricks-light: #FF6B4A;
+  --color-databricks-dark: #E02A0F;
+  --color-databricks-bg: #FFF0EE;
+  --color-docker: #2496ED;
+  --color-docker-light: #3BAFDA;
+  --color-docker-dark: #1D7BC4;
+  --color-docker-bg: #E8F4FC;
+  --color-git: #F05032;
+  --color-git-light: #F87058;
+  --color-git-dark: #E03C2A;
+  --color-git-bg: #FDF2F0;
+  --color-python: #3776AB;
+  --color-python-light: #5B9BD5;
+  --color-python-dark: #2D5A87;
+  --color-python-bg: #E8F4FC;
+  --color-adf: #0078D4;
+  --color-adf-light: #50E6FF;
+  --color-adf-dark: #005A9E;
+  --color-adf-bg: #E6F4FC;
+  --color-postgres: #336791;
+  --color-postgres-light: #4E9AD4;
+  --color-postgres-dark: #2A5470;
+  --color-postgres-bg: #E8F2F8;
 }
 
 html {
