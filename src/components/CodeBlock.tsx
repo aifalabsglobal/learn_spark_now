@@ -72,8 +72,8 @@ function highlightBash(code: string): string {
       return `<span class="code-comment">${hl}</span>`;
     }
 
-    // Commands
-    const cmds = ['sudo', 'apt-get', 'install', 'wget', 'tar', 'mv', 'export', 'pip', 'spark-shell', 'pyspark', 'spark-submit', 'cd', 'mkdir', 'echo', 'cat'];
+    // Commands (bash + PowerShell)
+    const cmds = ['sudo', 'apt-get', 'install', 'wget', 'tar', 'mv', 'export', 'pip', 'spark-shell', 'pyspark', 'spark-submit', 'cd', 'mkdir', 'echo', 'cat', 'Invoke-WebRequest', 'Move-Item', 'Set-Location', 'winget', 'Expand-Archive'];
     cmds.forEach(cmd => {
       const re = new RegExp(`\\b(${cmd})\\b`, 'g');
       hl = hl.replace(re, '<span class="code-keyword">$1</span>');
@@ -95,7 +95,7 @@ export default function CodeBlock({ code, language = 'python', title }: CodeBloc
     });
   }, [code]);
 
-  const highlighted = language === 'bash' ? highlightBash(code) : highlightPython(code);
+  const highlighted = (language === 'bash' || language === 'powershell') ? highlightBash(code) : highlightPython(code);
 
   return (
     <div className="rounded-lg overflow-hidden my-4 border border-slate-700/50 group">

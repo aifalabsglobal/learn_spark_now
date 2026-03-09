@@ -13,6 +13,9 @@ export default function Fundamentals() {
       <Callout type="info" title="👋 In Plain English">
         Spark is a tool that helps computers work on <strong>huge amounts of information</strong> (like millions of names, numbers, or records) really fast by using many computers at once — like having lots of friends help you sort a giant pile of toys instead of doing it alone!
       </Callout>
+      <p className="text-slate-500 text-xs mb-6">
+        <strong>Windows users:</strong> All code examples in this guide use Windows-style paths (e.g. <code className="text-slate-400">C:/data/file.csv</code>). Python accepts forward slashes on Windows, so you can copy and run them as-is. Create folders like <code className="text-slate-400">C:\data</code> and <code className="text-slate-400">C:\spark_data</code> if needed.
+      </p>
 
       {/* What is Spark */}
       <div id="what-is-spark" className="mb-12">
@@ -78,30 +81,67 @@ Spark:      Memory → Transform → Memory → Action → Output (100x FASTER)`
       <div id="installation" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-spark rounded-full" />
-          Installation & Setup
+          Installation & Setup (Windows)
         </h3>
 
+        <p className="text-slate-400 text-sm mb-4">
+          Follow these steps in order. Use <strong className="text-slate-300">PowerShell</strong> or <strong className="text-slate-300">Command Prompt</strong> (right-click Start → Terminal or search &quot;PowerShell&quot;). Each step is explained so you know what you&apos;re doing.
+        </p>
+
+        <div className="space-y-4 mb-6">
+          <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4">
+            <h4 className="text-sm font-bold text-spark-light mb-1">Step 1 — Install Java</h4>
+            <p className="text-xs text-slate-400">Spark needs Java to run. Open PowerShell and run <code className="text-slate-300">winget install OpenJDK.JDK.11</code> (if you have Winget). Or download the JDK from <a href="https://adoptium.net/" className="text-spark hover:underline" target="_blank" rel="noopener noreferrer">adoptium.net</a> or <a href="https://www.oracle.com/java/technologies/downloads/" className="text-spark hover:underline" target="_blank" rel="noopener noreferrer">oracle.com</a>, run the installer, and note where it installed (e.g. <code className="text-slate-300">C:\Program Files\Eclipse Adoptium\jdk-11.x.x</code>). You&apos;ll need this path for <code className="text-slate-300">JAVA_HOME</code> later.</p>
+          </div>
+          <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4">
+            <h4 className="text-sm font-bold text-spark-light mb-1">Step 2 — Download and Install Spark</h4>
+            <p className="text-xs text-slate-400">Download the Spark archive from <a href="https://spark.apache.org/downloads.html" className="text-spark hover:underline" target="_blank" rel="noopener noreferrer">spark.apache.org/downloads</a> (choose &quot;Pre-built for Apache Hadoop 3&quot;). You get a <code className="text-slate-300">.tgz</code> file — right-click → Extract (or use 7-Zip). Move the extracted folder to <code className="text-slate-300">C:\spark</code> so the full path is <code className="text-slate-300">C:\spark\bin\spark-shell.cmd</code>. Or use the PowerShell commands below to download and extract.</p>
+          </div>
+          <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4">
+            <h4 className="text-sm font-bold text-spark-light mb-1">Step 3 — Set Environment Variables</h4>
+            <p className="text-xs text-slate-400">Windows needs to know where Spark and Java live. Press <strong>Win + X</strong> → <strong>System</strong> → <strong>Advanced system settings</strong> → <strong>Environment Variables</strong>. Under &quot;System variables&quot; click <strong>New</strong>: add <code className="text-slate-300">SPARK_HOME</code> = <code className="text-slate-300">C:\spark</code> (or your Spark folder). Add <code className="text-slate-300">JAVA_HOME</code> = your JDK folder (e.g. <code className="text-slate-300">C:\Program Files\Eclipse Adoptium\jdk-11.0.21.9-hotspot</code>). Edit <code className="text-slate-300">Path</code> and add <code className="text-slate-300">%SPARK_HOME%\bin</code>. Click OK, then <strong>close and reopen</strong> PowerShell so the new variables are loaded.</p>
+          </div>
+          <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4">
+            <h4 className="text-sm font-bold text-spark-light mb-1">Step 4 — Install PySpark (Python)</h4>
+            <p className="text-xs text-slate-400">Install Python from <a href="https://www.python.org/downloads/" className="text-spark hover:underline" target="_blank" rel="noopener noreferrer">python.org</a> if you don&apos;t have it (check &quot;Add Python to PATH&quot;). Open a <strong>new</strong> PowerShell and run <code className="text-slate-300">pip install pyspark</code>. This installs the Python library that talks to Spark so you can write Spark code in Python.</p>
+          </div>
+          <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4">
+            <h4 className="text-sm font-bold text-spark-light mb-1">Step 5 — Verify Installation</h4>
+            <p className="text-xs text-slate-400">In a new PowerShell window run <code className="text-slate-300">spark-shell</code> (Scala) or <code className="text-slate-300">pyspark</code> (Python). You should see the Spark logo and a prompt. Type <code className="text-slate-300">:quit</code> in spark-shell or <code className="text-slate-300">exit()</code> in pyspark to exit. Run <code className="text-slate-300">spark-submit --version</code> to see the version. If you get &quot;not recognized&quot;, the PATH or SPARK_HOME is wrong — double-check Step 3 and restart the terminal.</p>
+          </div>
+        </div>
+
         <CodeBlock
-          language="bash"
-          title="Installation Steps"
-          code={`# Step 1: Install Java
-sudo apt-get install openjdk-11-jdk
+          language="powershell"
+          title="PowerShell: Install Java and download Spark"
+          code={`# Step 1: Install Java (Windows Package Manager)
+winget install OpenJDK.JDK.11
 
-# Step 2: Install Spark
-wget https://downloads.apache.org/spark/spark-3.5.0/spark-3.5.0-bin-hadoop3.tgz
-tar -xzf spark-3.5.0-bin-hadoop3.tgz
-mv spark-3.5.0-bin-hadoop3 /opt/spark
-
-# Step 3: Set Environment Variables
-export SPARK_HOME=/opt/spark
-export PATH=$SPARK_HOME/bin:$PATH
-
-# Step 4: Install PySpark (Python)
+# Step 2: Download Spark and extract to C:\\spark (run in PowerShell)
+$sparkUrl = "https://downloads.apache.org/spark/spark-3.5.0/spark-3.5.0-bin-hadoop3.tgz"
+$out = "$env:USERPROFILE\\Downloads\\spark-3.5.0-bin-hadoop3.tgz"
+Invoke-WebRequest -Uri $sparkUrl -OutFile $out -UseBasicParsing
+# Extract: use 7-Zip (Install-Module -Name 7Zip4Powershell) or Windows 10+ built-in:
+tar -xzf $out -C $env:USERPROFILE\\Downloads
+Move-Item "$env:USERPROFILE\\Downloads\\spark-3.5.0-bin-hadoop3" C:\\spark`}
+        />
+        <CodeBlock
+          language="powershell"
+          title="PowerShell: Set variables for this session (optional, until you set them in System)"
+          code={`# Use your actual paths! Then add C:\\spark\\bin to PATH in Environment Variables (Step 3 above)
+$env:SPARK_HOME = "C:\\spark"
+$env:JAVA_HOME = "C:\\Program Files\\Eclipse Adoptium\\jdk-11.0.21.9-hotspot"   # or your JDK path
+$env:Path += ";$env:SPARK_HOME\\bin"`}
+        />
+        <CodeBlock
+          language="powershell"
+          title="Step 4 & 5: Install PySpark and verify (PowerShell)"
+          code={`# Step 4: Install PySpark (Python must be installed and in PATH)
 pip install pyspark
 
-# Step 5: Verify Installation
-spark-shell          # Scala Shell
-pyspark              # Python Shell
+# Step 5: Check that Spark works (open a NEW PowerShell after setting env vars)
+spark-shell          # Scala — type :quit to exit
+pyspark              # Python — type exit() to exit
 spark-submit --version`}
         />
       </div>

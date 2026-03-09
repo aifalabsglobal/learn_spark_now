@@ -250,12 +250,12 @@ spark = SparkSession.builder \\
     .config("spark.sql.adaptive.enabled", "true") \\
     .getOrCreate()
 
-# Extract from multiple sources
+# Extract from multiple sources (Windows: localhost JDBC, local or cloud paths)
 customers = spark.read.format("jdbc") \\
     .option("url", "jdbc:mysql://localhost:3306/ecommerce") \\
     .option("dbtable", "customers").load()
 
-orders = spark.read.parquet("s3a://data-lake/orders/")
+orders = spark.read.parquet("C:/data/orders/")  # or s3a://data-lake/orders/ for cloud
 
 # Transform — Clean & Enrich
 customers_clean = customers \\
@@ -314,11 +314,11 @@ customer_360 = customers_clean \\
         .when(col("days_since_last_order") > 90, "Medium")
         .otherwise("Low"))
 
-# Load — Write to Data Lake
+# Load — Write (Windows: use C:/ path)
 customer_360.write \\
     .mode("overwrite") \\
     .partitionBy("country", "customer_segment") \\
-    .parquet("output/customer_360/")`}
+    .parquet("C:/data/output/customer_360/")`}
         />
       </div>
 
@@ -453,8 +453,8 @@ q = transactions.writeStream \\
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.tuning import ParamGridBuilder, CrossValidator
 
-# Load ratings data
-ratings = spark.read.csv("ratings.csv", header=True, inferSchema=True)
+# Load ratings data (Windows: use C:/ path)
+ratings = spark.read.csv("C:/data/ratings.csv", header=True, inferSchema=True)
 (training, test) = ratings.randomSplit([0.8, 0.2], seed=42)
 
 # Build ALS Model
@@ -519,8 +519,8 @@ assembler = VectorAssembler(
     inputCols=[f"g_{g}" for g in genre_list], outputCol="genre_vector")
 movies_vec = assembler.transform(movies)
 
-# Save model
-best_model.save("models/als_recommendation_model")
+# Save model (Windows: use C:/ path)
+best_model.save("C:/data/models/als_recommendation_model")
 print("Recommendation Engine Complete!")`}
         />
       </div>

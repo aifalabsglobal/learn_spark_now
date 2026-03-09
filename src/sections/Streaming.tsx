@@ -202,12 +202,12 @@ q1 = windowed_counts.writeStream \\
     .option("truncate", "false") \\
     .start()
 
-# File Sink (Parquet)
+# File Sink (Parquet) — Windows: use C:/ paths
 q2 = events.writeStream \\
     .outputMode("append") \\
     .format("parquet") \\
-    .option("path", "output/events") \\
-    .option("checkpointLocation", "checkpoint/events") \\
+    .option("path", "C:/spark_data/output/events") \\
+    .option("checkpointLocation", "C:/spark_data/checkpoint/events") \\
     .partitionBy("action") \\
     .trigger(processingTime="1 minute") \\
     .start()
@@ -220,7 +220,7 @@ q3 = events.select(
     .format("kafka") \\
     .option("kafka.bootstrap.servers", "localhost:9092") \\
     .option("topic", "output_topic") \\
-    .option("checkpointLocation", "checkpoint/kafka") \\
+    .option("checkpointLocation", "C:/spark_data/checkpoint/kafka") \\
     .start()
 
 # ForeachBatch Sink (custom processing per micro-batch)
@@ -233,7 +233,7 @@ def process_batch(batch_df, batch_id):
 
 q4 = events.writeStream \\
     .foreachBatch(process_batch) \\
-    .option("checkpointLocation", "checkpoint/jdbc") \\
+    .option("checkpointLocation", "C:/spark_data/checkpoint/jdbc") \\
     .start()
 
 spark.streams.awaitAnyTermination()`}

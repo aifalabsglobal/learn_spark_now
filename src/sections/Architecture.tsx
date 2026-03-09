@@ -94,12 +94,13 @@ sc = SparkContext("local[*]", "RDD_Basics")
 # Method 1: From a collection (Parallelizing)
 rdd1 = sc.parallelize([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
-# Method 2: From external file
-rdd2 = sc.textFile("hdfs://path/to/file.txt")
-rdd3 = sc.textFile("s3://bucket/data.csv")
+# Method 2: From external file (Windows: use C:/ or file:///)
+rdd2 = sc.textFile("C:/data/file.txt")           # Windows local path
+rdd3 = sc.textFile("hdfs://path/to/file.txt")   # HDFS cluster
+rdd4 = sc.textFile("s3://bucket/data.csv")      # Cloud storage
 
 # Method 3: From another RDD (Transformation)
-rdd4 = rdd1.map(lambda x: x * 2)
+rdd5 = rdd1.map(lambda x: x * 2)
 
 # RDD Properties
 print(f"Number of partitions: {rdd1.getNumPartitions()}")

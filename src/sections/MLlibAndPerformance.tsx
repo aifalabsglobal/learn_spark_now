@@ -101,8 +101,8 @@ bucketizer = Bucketizer(
 from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 
-# Load and split data
-data = spark.read.csv("data.csv", header=True, inferSchema=True)
+# Load and split data (Windows: use C:/ path)
+data = spark.read.csv("C:/data/data.csv", header=True, inferSchema=True)
 train, test = data.randomSplit([0.8, 0.2], seed=42)
 
 # Create pipeline
@@ -167,9 +167,9 @@ cv_model = crossval.fit(train)
 best_model = cv_model.bestModel
 print(f"Best accuracy: {evaluator.evaluate(cv_model.transform(test)):.4f}")
 
-# Save/Load model
-model.save("models/my_model")
-# loaded_model = PipelineModel.load("models/my_model")`}
+# Save/Load model (Windows: use C:/ path)
+model.save("C:/data/models/my_model")
+# loaded_model = PipelineModel.load("C:/data/models/my_model")`}
         />
       </div>
     </section>
@@ -289,9 +289,9 @@ result = df_salted.join(lookup_salted, "salted_key", "inner")`}
           code={`from pyspark.sql.functions import broadcast
 
 # When one table is small (< 10MB by default)
-# Broadcast it to all executors to avoid shuffle
-small_df = spark.read.csv("small_lookup.csv", header=True)
-large_df = spark.read.parquet("large_data.parquet")
+# Broadcast it to all executors to avoid shuffle (Windows: use C:/ paths)
+small_df = spark.read.csv("C:/data/small_lookup.csv", header=True)
+large_df = spark.read.parquet("C:/data/large_data.parquet")
 
 # Explicit broadcast hint
 result = large_df.join(broadcast(small_df), "key", "inner")

@@ -47,19 +47,19 @@ schema = StructType([
 ])
 df = spark.createDataFrame(data, schema)
 
-# Method 2: From CSV
+# Method 2: From CSV (Windows: use C:/ or relative path)
 df_csv = spark.read \\
     .option("header", "true") \\
     .option("inferSchema", "true") \\
-    .csv("employees.csv")
+    .csv("C:/data/employees.csv")
 
 # Method 3: From JSON
-df_json = spark.read.option("multiLine", "true").json("data.json")
+df_json = spark.read.option("multiLine", "true").json("C:/data/data.json")
 
 # Method 4: From Parquet (columnar - recommended)
-df_parquet = spark.read.parquet("data.parquet")
+df_parquet = spark.read.parquet("C:/data/data.parquet")
 
-# Method 5: From database (JDBC)
+# Method 5: From database (JDBC - localhost works on Windows)
 df_jdbc = spark.read.format("jdbc") \\
     .option("url", "jdbc:mysql://localhost:3306/mydb") \\
     .option("dbtable", "employees") \\
@@ -339,25 +339,25 @@ spark.sql("SELECT *, cat_salary(salary) as level FROM employees").show()`}
         </h3>
         <CodeBlock
           title="Output Formats"
-          code={`# Write to Parquet (recommended)
+          code={`# Write to Parquet (Windows: use C:/ paths)
 df.write \\
     .mode("overwrite") \\
     .partitionBy("department") \\
-    .parquet("output/employees.parquet")
+    .parquet("C:/data/output/employees.parquet")
 
 # Write to CSV
 df.write \\
     .mode("overwrite") \\
     .option("header", "true") \\
-    .csv("output/employees.csv")
+    .csv("C:/data/output/employees.csv")
 
 # Write to JSON
-df.write.mode("overwrite").json("output/employees.json")
+df.write.mode("overwrite").json("C:/data/output/employees.json")
 
 # Write to single file
-df.coalesce(1).write.mode("overwrite").csv("output/single_file.csv")
+df.coalesce(1).write.mode("overwrite").csv("C:/data/output/single_file.csv")
 
-# Write to database
+# Write to database (localhost on Windows)
 df.write.format("jdbc") \\
     .option("url", "jdbc:mysql://localhost:3306/mydb") \\
     .option("dbtable", "employees_output") \\
