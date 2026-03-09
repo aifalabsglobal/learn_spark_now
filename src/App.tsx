@@ -3,6 +3,7 @@ import {
   Zap, BookOpen, ArrowUp, Flame, Cpu, Database, Radio,
   Brain, Gauge, FolderKanban, ChevronRight
 } from 'lucide-react';
+import { logger } from './utils/logger';
 import Sidebar from './components/Sidebar';
 import Fundamentals from './sections/Fundamentals';
 import Architecture from './sections/Architecture';
@@ -27,7 +28,28 @@ function App() {
   const mainRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
 
+  // Log component mount and cleanup
   useEffect(() => {
+    logger.componentMount('App');
+    return () => logger.componentUnmount('App');
+  }, []);
+
+  // Log when active section changes
+  useEffect(() => {
+    if (activeSection !== 'fundamentals') {
+      logger.navigate('App', `section: ${activeSection}`);
+    }
+  }, [activeSection]);
+
+  // Tip for students
+  useEffect(() => {
+    logger.concept(
+      'Console Logging',
+      'All user interactions are being logged to the console. Open DevTools (F12) → Console to see them. This helps you understand how the app works!'
+    );
+  }, []);
+
+  useEffect(() {
     const main = mainRef.current;
     if (!main) return;
 

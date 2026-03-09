@@ -5,10 +5,12 @@ A comprehensive, interactive web application providing detailed documentation an
 ## 📋 Table of Contents
 
 - [Overview](#overview)
+- [Quick Start](#quick-start)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Development](#development)
+- [Console Logging (Educational Tool)](#console-logging-educational-tool)
 - [Building for Production](#building-for-production)
 - [Project Structure](#project-structure)
 - [Git Workflow](#git-workflow)
@@ -818,7 +820,62 @@ npm run build
 npm run preview
 ```
 
-## 🔨 Building for Production
+## � Console Logging (Educational Tool)
+
+This application includes **comprehensive console logging** to help you understand how the app works. All user interactions are logged with color-coded messages.
+
+### What You'll See in the Console
+
+Open **DevTools** (Press F12) → **Console** tab:
+
+```
+✅ [Learn Spark] Apache Spark Learning App Initialized
+ℹ️ [Learn Spark] Welcome to Learn Spark!
+📚 [Learn Spark] Console Logging: All interactions logged...
+🔧 [Learn Spark] 📦 App mounted
+🧭 [Learn Spark] Navigation: Sidebar → scrollTo: fundamentals
+```
+
+### Why Console Logging Matters
+
+The logs help you:
+- **Learn React**: See component lifecycle in real-time
+- **Debug issues**: Error messages explain what went wrong
+- **Understand flow**: Watch how user clicks trigger updates
+- **Track interactions**: See every user action
+
+### Key Logs You'll See
+
+| What Happens | What You'll See |
+|--------------|-----------------|
+| Page loads | ✅ App Initialized |
+| You click a section | 🧭 Navigation logs |
+| Components mount | 🔧 Component mounted |
+| Section expands | 🔧 Section expanded |
+| Error occurs | ❌ Error with details |
+
+### Using Logs for Learning
+
+**Example: Follow a click**
+1. Click "Spark SQL" in sidebar
+2. Look at console - see three log messages:
+   - Sidebar logs the click
+   - App logs the navigation
+   - Section scrolls into view
+
+This shows you how React components communicate!
+
+### Full Guide
+
+For detailed information about console logging, see [CONSOLE_LOGGING_GUIDE.md](CONSOLE_LOGGING_GUIDE.md)
+
+**Key points:**
+- 📱 Logs only appear in development (production is clean)
+- 🎓 Great for learning React concepts
+- 🐛 Helps debugging when something breaks
+- 📊 Shows execution flow in real-time
+
+## �🔨 Building for Production
 
 ### Create Optimized Production Build
 

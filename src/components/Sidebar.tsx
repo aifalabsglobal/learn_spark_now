@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Flame, Cpu, Database, Radio, Brain, Gauge,
   FolderKanban, ChevronDown, ChevronRight, Menu, X,
   Zap
 } from 'lucide-react';
+import { logger } from '../utils/logger';
 
 export interface NavItem {
   id: string;
@@ -109,11 +110,19 @@ export default function Sidebar({ activeSection }: SidebarProps) {
   );
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Log component mount
+  useEffect(() => {
+    logger.componentMount('Sidebar');
+    return () => logger.componentUnmount('Sidebar');
+  }, []);
+
   const toggleSection = (id: string) => {
     setExpandedSections(prev => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
       else next.add(id);
+      const action = next.has(id) ? 'expanded' : 'collapsed';
+      logger.debug(`Section ${action}: ${id}`);
       return next;
     });
   };
@@ -121,8 +130,11 @@ export default function Sidebar({ activeSection }: SidebarProps) {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
+      logger.navigate('Sidebar', `scrollTo: ${id}`);
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setMobileOpen(false);
+    } else {
+      logger.warn(`Section element not found: ${id}`);
     }
   };
 
