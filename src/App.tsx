@@ -3,6 +3,7 @@ import {
   Zap, BookOpen, ArrowUp, Flame, Cpu, Database, Radio,
   Brain, Gauge, FolderKanban, ChevronRight, ChevronDown, Layers
 } from 'lucide-react';
+import { SignInButton, SignUpButton, UserButton, Show } from '@clerk/react';
 import { logger } from './utils/logger';
 import { APP, LEGAL, SUPPORT } from './config/app';
 import Sidebar, { type Course } from './components/Sidebar';
@@ -295,8 +296,32 @@ function App() {
         />
       </div>
 
-      {/* Course switcher — fixed at top, always visible */}
-      <div className="fixed top-1.5 left-4 right-4 z-40 flex justify-center sm:justify-end lg:left-auto lg:right-6 lg:pl-[17rem]">
+      {/* Top bar: auth (left) + course switcher (right) */}
+      <div className="fixed top-1.5 left-4 right-4 z-40 flex justify-between items-center lg:left-auto lg:right-6 lg:pl-[17rem]">
+        <div className="flex items-center gap-2">
+          <Show when="signed-out">
+            <SignInButton mode="modal">
+              <button type="button" className="text-sm font-medium text-slate-300 hover:text-white px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                Sign in
+              </button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <button type="button" className="text-sm font-medium bg-spark text-white px-3 py-2 rounded-lg hover:bg-spark-dark transition-colors">
+                Sign up
+              </button>
+            </SignUpButton>
+          </Show>
+          <Show when="signed-in">
+            <UserButton
+              afterSignOutUrl={window.location.origin + window.location.pathname}
+              appearance={{
+                elements: {
+                  avatarBox: 'w-8 h-8 ring-1 ring-slate-600',
+                },
+              }}
+            />
+          </Show>
+        </div>
         <div ref={courseDropdownRef} className="relative">
           <button
             onClick={() => setCourseDropdownOpen(!courseDropdownOpen)}
