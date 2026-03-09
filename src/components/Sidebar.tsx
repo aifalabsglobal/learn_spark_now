@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {
   Flame, Cpu, Database, Radio, Brain, Gauge,
   FolderKanban, ChevronDown, ChevronRight, Menu, X,
-  Zap, Trophy
+  Zap, Trophy, ClipboardList, MessageCircle, Server, Terminal, Layers, Shield, BarChart3
 } from 'lucide-react';
 import { logger } from '../utils/logger';
 
@@ -113,17 +113,61 @@ const navItems: NavItem[] = [
       { id: 'a15', label: 'A15–A18: Projects' },
     ],
   },
+  {
+    id: 'cheatsheet',
+    label: 'Cheatsheet',
+    icon: <ClipboardList size={16} />,
+  },
 ];
+
+const kafkaNavItems: NavItem[] = [
+  { id: 'kafka-fundamentals', label: 'Week 1: Fundamentals', icon: <Flame size={16} />, children: [
+    { id: 'kafka-why-exists', label: 'Why Kafka Exists' },
+    { id: 'kafka-event-modeling', label: 'Event Modeling' },
+    { id: 'kafka-use-cases', label: 'Use Case Analysis' },
+  ]},
+  { id: 'kafka-architecture', label: 'Week 2: Architecture', icon: <Server size={16} />, children: [
+    { id: 'kafka-core-components', label: 'Core Components' },
+    { id: 'kafka-partition-strategy', label: 'Partition Strategy' },
+  ]},
+  { id: 'kafka-handson', label: 'Week 3: Hands-on (Docker)', icon: <Terminal size={16} />, children: [
+    { id: 'kafka-docker-install', label: 'Install Docker' },
+    { id: 'kafka-create-topic', label: 'Create Topic' },
+    { id: 'kafka-produce', label: 'Produce / Consume' },
+  ]},
+  { id: 'kafka-producers-consumers', label: 'Week 4: Producers & Consumers', icon: <Radio size={16} />, children: [
+    { id: 'kafka-python-producer', label: 'Python Producer' },
+    { id: 'kafka-python-consumer', label: 'Python Consumer' },
+    { id: 'kafka-order-pipeline-assignment', label: 'Order Pipeline Lab' },
+  ]},
+  { id: 'kafka-internals', label: 'Week 5: Internals', icon: <Database size={16} /> },
+  { id: 'kafka-replication', label: 'Week 6: Replication', icon: <Shield size={16} />, children: [
+    { id: 'kafka-failure-simulation', label: 'Failure Simulation' },
+  ]},
+  { id: 'kafka-streams', label: 'Week 7: Kafka Streams', icon: <Layers size={16} /> },
+  { id: 'kafka-production', label: 'Week 8: Production', icon: <BarChart3 size={16} /> },
+  { id: 'kafka-assignments', label: 'Labs & Assignments', icon: <Trophy size={16} /> },
+  { id: 'kafka-interview', label: '100 Interview Questions', icon: <MessageCircle size={16} /> },
+];
+
+export type Course = 'spark' | 'kafka';
 
 interface SidebarProps {
   activeSection: string;
+  course?: Course;
 }
 
-export default function Sidebar({ activeSection }: SidebarProps) {
+export default function Sidebar({ activeSection, course = 'spark' }: SidebarProps) {
+  const items = course === 'kafka' ? kafkaNavItems : navItems;
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
-    new Set(navItems.map(n => n.id))
+    () => new Set(items.map(n => n.id))
   );
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Reset expanded sections when switching course
+  useEffect(() => {
+    setExpandedSections(new Set(items.map(n => n.id)));
+  }, [course]);
 
   // Log component mount
   useEffect(() => {
@@ -163,7 +207,7 @@ export default function Sidebar({ activeSection }: SidebarProps) {
       {/* Logo */}
       <div className="p-5 border-b border-slate-700/50">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-spark to-spark-light flex items-center justify-center pulse-spark">
+          <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${course === 'kafka' ? 'bg-gradient-to-br from-kafka to-kafka-light' : 'bg-gradient-to-br from-spark to-spark-light pulse-spark'}`}>
             <Zap size={20} className="text-white" />
           </div>
           <div>
@@ -178,7 +222,7 @@ export default function Sidebar({ activeSection }: SidebarProps) {
 
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto sidebar-scroll py-3 px-3">
-        {navItems.map((item) => (
+        {items.map((item) => (
           <div key={item.id} className="mb-1">
             <button
               onClick={() => {
@@ -187,11 +231,11 @@ export default function Sidebar({ activeSection }: SidebarProps) {
               }}
               className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-left text-sm font-medium transition-all ${
                 isParentActive(item)
-                  ? 'text-spark-light bg-spark/10'
+                  ? course === 'kafka' ? 'text-kafka-light bg-kafka/10' : 'text-spark-light bg-spark/10'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
               }`}
             >
-              <span className={isParentActive(item) ? 'text-spark-light' : 'text-slate-500'}>
+              <span className={isParentActive(item) ? (course === 'kafka' ? 'text-kafka-light' : 'text-spark-light') : 'text-slate-500'}>
                 {item.icon}
               </span>
               <span className="flex-1">{item.label}</span>
@@ -210,7 +254,7 @@ export default function Sidebar({ activeSection }: SidebarProps) {
                     onClick={() => scrollTo(child.id)}
                     className={`w-full text-left px-3 py-1.5 text-xs rounded-md transition-all ${
                       isActive(child.id)
-                        ? 'text-spark-light bg-spark/10 font-medium'
+                        ? course === 'kafka' ? 'text-kafka-light bg-kafka/10 font-medium' : 'text-spark-light bg-spark/10 font-medium'
                         : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/30'
                     }`}
                   >
@@ -226,7 +270,7 @@ export default function Sidebar({ activeSection }: SidebarProps) {
       {/* Footer */}
       <div className="p-4 border-t border-slate-700/50">
         <div className="text-[10px] text-slate-500 text-center">
-          Basics → Advanced · 7 Parts · 5 Projects
+          {course === 'kafka' ? '8 Weeks · 100 Interview Qs' : 'Basics → Advanced · 7 Parts · 5 Projects'}
         </div>
       </div>
     </div>

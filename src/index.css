@@ -7,6 +7,10 @@
   --color-spark-light: #FF7A3D;
   --color-spark-dark: #C04A15;
   --color-spark-bg: #FFF3ED;
+  --color-kafka: #0DBB8C;
+  --color-kafka-light: #2DD4A8;
+  --color-kafka-dark: #0A9B6E;
+  --color-kafka-bg: #ECFDF8;
 }
 
 html {
