@@ -139,11 +139,29 @@ function App() {
         />
       </div>
 
+      {/* Course switcher — always visible at top */}
+      <div className="fixed top-1 left-0 right-0 z-40 flex justify-center lg:justify-end lg:pr-4 lg:pl-[17rem]">
+        <div className="flex gap-1 rounded-lg bg-slate-800/90 border border-slate-700/80 p-1 shadow-lg backdrop-blur-sm">
+          <button
+            onClick={() => switchCourse('spark')}
+            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${course === 'spark' ? 'bg-spark text-white shadow' : 'text-slate-400 hover:text-white hover:bg-slate-700'}`}
+          >
+            Spark
+          </button>
+          <button
+            onClick={() => switchCourse('kafka')}
+            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${course === 'kafka' ? 'bg-kafka text-white shadow' : 'text-slate-400 hover:text-white hover:bg-slate-700'}`}
+          >
+            Kafka
+          </button>
+        </div>
+      </div>
+
       {/* Sidebar */}
       <Sidebar activeSection={activeSection} course={course} />
 
       {/* Main Content */}
-      <div ref={mainRef} className="flex-1 lg:ml-64 overflow-y-auto scroll-smooth" style={{ scrollPaddingTop: '80px' }}>
+      <div ref={mainRef} className="flex-1 lg:ml-64 overflow-y-auto scroll-smooth pt-10" style={{ scrollPaddingTop: '80px' }}>
         {/* Hero */}
         <header className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900" />
@@ -155,22 +173,6 @@ function App() {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px]" />
 
           <div className="relative max-w-5xl mx-auto px-6 py-16 md:py-24">
-            {/* Course switcher */}
-            <div className="flex gap-2 mb-6">
-              <button
-                onClick={() => switchCourse('spark')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${course === 'spark' ? 'bg-spark text-white' : 'bg-slate-800 text-slate-400 hover:text-white border border-slate-700'}`}
-              >
-                Apache Spark
-              </button>
-              <button
-                onClick={() => switchCourse('kafka')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${course === 'kafka' ? 'bg-kafka text-white' : 'bg-slate-800 text-slate-400 hover:text-white border border-slate-700'}`}
-              >
-                Apache Kafka
-              </button>
-            </div>
-
             <div className="flex items-center gap-3 mb-6">
               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${course === 'kafka' ? 'bg-gradient-to-br from-kafka to-kafka-light' : 'bg-gradient-to-br from-spark to-spark-light pulse-spark'}`}>
                 <Zap size={28} className="text-white" />
