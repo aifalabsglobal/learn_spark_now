@@ -11,15 +11,17 @@ import SparkSQL from './sections/SparkSQL';
 import Streaming from './sections/Streaming';
 import { MLlib, Performance } from './sections/MLlibAndPerformance';
 import Projects from './sections/Projects';
+import Assignments from './sections/Assignments';
 
 const ALL_SECTION_IDS = [
   'fundamentals', 'what-is-spark', 'why-spark', 'installation', 'first-app',
   'architecture', 'arch-diagram', 'rdd', 'transformations', 'dag', 'caching', 'broadcast',
   'spark-sql', 'dataframes', 'df-operations', 'aggregations', 'window-functions', 'joins', 'sql-queries', 'udfs', 'writing-data',
-  'streaming', 'streaming-concepts', 'kafka-source', 'windowed-agg', 'streaming-sinks',
+  'streaming', 'streaming-concepts', 'streaming-checkpoint', 'kafka-source', 'windowed-agg', 'streaming-sinks',
   'mllib', 'ml-pipeline', 'feature-eng', 'classification', 'hyperparameter',
   'performance', 'spark-config', 'optimization', 'data-skew', 'broadcast-join',
   'projects', 'project-1', 'project-2', 'project-3', 'project-4', 'project-5',
+  'assignments', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a12', 'a13', 'a14', 'a15', 'a16', 'a17', 'a18',
 ];
 
 function App() {
@@ -198,6 +200,7 @@ function App() {
                 { num: '5', title: 'MLlib', id: 'mllib', sub: 'Pipelines, Feature Eng, Tuning' },
                 { num: '6', title: 'Performance Tuning', id: 'performance', sub: 'Config, Optimization, Skew' },
                 { num: '7', title: '5 Real-Time Projects', id: 'projects', sub: 'E-Commerce, Logs, Fraud, ML' },
+                { num: '8', title: 'Gamified Assignments', id: 'assignments', sub: '18 tasks, badges, 1000+ pts' },
               ].map((item) => (
                 <button
                   key={item.id}
@@ -232,6 +235,7 @@ function App() {
           <MLlib />
           <Performance />
           <Projects />
+          <Assignments />
 
           {/* Summary */}
           <section className="mb-20">
@@ -316,7 +320,7 @@ function App() {
               <span className="text-sm font-bold text-white">Apache Spark Complete Guide</span>
             </div>
             <p className="text-xs text-slate-500">
-              From Fundamentals to Advanced · 7 Parts · 5 Production-Grade Projects
+              From Fundamentals to Advanced · 7 Parts · 5 Projects · Gamified Assignments (18 tasks, 7 badges)
             </p>
           </footer>
         </main>

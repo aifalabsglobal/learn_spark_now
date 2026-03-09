@@ -1,5 +1,6 @@
 import CodeBlock, { DiagramBlock } from '../components/CodeBlock';
 import Callout from '../components/Callout';
+import EnhancementBox from '../components/EnhancementBox';
 
 export default function Projects() {
   return (
@@ -13,6 +14,13 @@ export default function Projects() {
       <Callout type="info" title="👋 In Plain English">
         These are <strong>real-world examples</strong> that put everything together: tracking clicks on a website in real time, watching for errors in server logs, building a &quot;customer profile&quot; from lots of data, catching bad transactions (fraud), and recommending movies. Each project uses Spark in a different way so you can see how it works in practice!
       </Callout>
+      <EnhancementBox title="Projects — possible enhancements" items={[
+        'E-Commerce: Add a sink to write metrics to a database or dashboard API; add more funnel steps.',
+        'Logs: Add P50/P95/P99 latency per endpoint using approx_count_distinct or percentiles.',
+        'Customer 360: Add data quality checks (nulls, duplicates) and a simple dashboard export (e.g. CSV per segment).',
+        'Fraud: Add a simple ML model (e.g. binary classifier) alongside rules and compare precision/recall.',
+        'Recommendations: Combine ALS with content-based features (genre vectors) in a hybrid scoring function.',
+      ]} />
 
       {/* Project 1 */}
       <div id="project-1" className="mb-16">
@@ -29,6 +37,14 @@ export default function Projects() {
           {['Kafka', 'Structured Streaming', 'Windowed Aggregations', 'PostgreSQL', 'Anomaly Detection'].map((t, i) => (
             <span key={i} className="text-[10px] font-medium text-red-300 bg-red-500/10 border border-red-500/20 px-2.5 py-1 rounded-full">{t}</span>
           ))}
+        </div>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: E-Commerce pipeline</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li>Run Kafka (e.g. locally or Docker) and create a topic <code className="text-slate-300">clickstream</code>. Publish events (user_id, action, product_id, timestamp, etc.) as JSON.</li>
+            <li>Read stream with <code className="text-slate-300">readStream.format("kafka")</code>, parse JSON with a schema, then apply <code className="text-slate-300">withWatermark</code> for windowed aggregations.</li>
+            <li>Build metrics: groupBy window + device for active users; groupBy window + category for funnel (views, cart adds); filter + groupBy for trending products. Use <code className="text-slate-300">writeStream.foreachBatch(detect_anomalies)</code> to run custom logic (e.g. alert if count &gt; threshold) per micro-batch.</li>
+          </ul>
         </div>
 
         <DiagramBlock title="Architecture">
@@ -163,6 +179,14 @@ spark.streams.awaitAnyTermination()`}
             <span key={i} className="text-[10px] font-medium text-blue-300 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full">{t}</span>
           ))}
         </div>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Log analysis pipeline</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li>Ingest raw log lines from Kafka (topic e.g. <code className="text-slate-300">server_logs</code>). Each message is one line of Apache combined log format.</li>
+            <li>Parse with <code className="text-slate-300">regexp_extract</code> to get IP, method, endpoint, status_code, content_size. Add <code className="text-slate-300">status_category</code> (2xx/4xx/5xx) and <code className="text-slate-300">withWatermark</code> for windows.</li>
+            <li>Aggregate by 1-minute window + status_category for request/error rates. For DDoS: groupBy window + ip_address, filter where count &gt; 1000, then <code className="text-slate-300">writeStream.foreachBatch(check_and_alert)</code> to print or send alerts.</li>
+          </ul>
+        </div>
 
         <CodeBlock
           title="Log Analysis — Real-Time Monitoring"
@@ -237,6 +261,14 @@ q_ddos = ddos_detection.writeStream \\
           {['Multi-Source ETL', 'Feature Engineering', 'RFM Segmentation', 'Data Quality Checks', 'Parquet Output'].map((t, i) => (
             <span key={i} className="text-[10px] font-medium text-green-300 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-full">{t}</span>
           ))}
+        </div>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Customer 360 ETL</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li><strong className="text-slate-300">Extract:</strong> Read customers from JDBC (MySQL) and orders from <code className="text-slate-300">C:/data/orders/</code> (Parquet) or S3. Ensure tables have customer_id for joining.</li>
+            <li><strong className="text-slate-300">Transform:</strong> Clean customers (full_name, age, age_group). Aggregate orders per customer (total_orders, total_spend, last_order_date, etc.). Compute RFM: R = recency (ntile by days_since_last_order), F = frequency, M = monetary; sum for RFM_score and map to segment (Champions, Loyal, At Risk, Lost).</li>
+            <li><strong className="text-slate-300">Load:</strong> Join customers + order features + RFM, add customer_value_tier and churn_risk. Write to <code className="text-slate-300">C:/data/output/customer_360/</code> with partitionBy country and customer_segment.</li>
+          </ul>
         </div>
 
         <CodeBlock
@@ -346,6 +378,14 @@ customer_360.write \\
                          ▼    ▼    ▼
                      Approve Review Block & Alert`}
         </DiagramBlock>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Fraud detection</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li>Read transactions from Kafka; parse JSON and set <code className="text-slate-300">withWatermark</code>. Enrich with customer profiles and country risk (e.g. broadcast or join).</li>
+            <li>In <code className="text-slate-300">apply_fraud_rules</code> (foreachBatch): add a fraud_score column and add points for rules (amount &gt; 5× avg, high-risk country, transaction in 0–5 AM, amount &gt; 5000, etc.). Classify into APPROVE / MONITOR / REVIEW / BLOCK by score thresholds. Optionally log or block high-score transactions.</li>
+            <li>Run a separate velocity check: groupBy 5-min window + customer_id, agg count and sum; filter where txn_count &gt; 5 or unique_countries &gt; 2 or total_amount &gt; 10000. Alert on these.</li>
+          </ul>
+        </div>
 
         <CodeBlock
           title="Fraud Detection — Rule-Based Scoring"
@@ -445,6 +485,14 @@ q = transactions.writeStream \\
           {['ALS Collaborative Filtering', 'Content-Based', 'Hybrid Approach', 'Cross-Validation', 'Model Evaluation'].map((t, i) => (
             <span key={i} className="text-[10px] font-medium text-purple-300 bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 rounded-full">{t}</span>
           ))}
+        </div>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Movie recommendations</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li>Load <code className="text-slate-300">C:/data/ratings.csv</code> (user_id, movie_id, rating). Split into train/test (e.g. 80/20). Build ALS with userCol, itemCol, ratingCol; set coldStartStrategy=&quot;drop&quot; and train with <code className="text-slate-300">als.fit(train)</code>.</li>
+            <li>Evaluate with RegressionEvaluator (RMSE). Tune with ParamGridBuilder (rank, regParam, maxIter) and CrossValidator; use <code className="text-slate-300">cv_model.bestModel</code> for final model.</li>
+            <li>Call <code className="text-slate-300">recommendForAllUsers(10)</code> to get top-10 movies per user; explode recommendations and join with movies table for titles. Optionally build content-based genre vectors with VectorAssembler for hybrid scoring. Save model to <code className="text-slate-300">C:/data/models/</code>.</li>
+          </ul>
         </div>
 
         <CodeBlock

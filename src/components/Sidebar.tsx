@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {
   Flame, Cpu, Database, Radio, Brain, Gauge,
   FolderKanban, ChevronDown, ChevronRight, Menu, X,
-  Zap
+  Zap, Trophy
 } from 'lucide-react';
 import { logger } from '../utils/logger';
 
@@ -59,6 +59,7 @@ const navItems: NavItem[] = [
     icon: <Radio size={16} />,
     children: [
       { id: 'streaming-concepts', label: 'Streaming Concepts' },
+      { id: 'streaming-checkpoint', label: 'Checkpointing & Exactly-Once' },
       { id: 'kafka-source', label: 'Kafka Integration' },
       { id: 'windowed-agg', label: 'Windowed Aggregations' },
       { id: 'streaming-sinks', label: 'Output Sinks' },
@@ -96,6 +97,20 @@ const navItems: NavItem[] = [
       { id: 'project-3', label: '3. Customer 360 ETL' },
       { id: 'project-4', label: '4. Fraud Detection' },
       { id: 'project-5', label: '5. Movie Recommendations' },
+    ],
+  },
+  {
+    id: 'assignments',
+    label: 'Gamified Assignments',
+    icon: <Trophy size={16} />,
+    children: [
+      { id: 'assignments', label: 'Overview & scoreboard' },
+      { id: 'a1', label: 'A1–A3: Fundamentals' },
+      { id: 'a4', label: 'A4–A5: Architecture' },
+      { id: 'a6', label: 'A6–A8: Spark SQL' },
+      { id: 'a9', label: 'A9–A10: Streaming' },
+      { id: 'a11', label: 'A11–A14: ML & Perf' },
+      { id: 'a15', label: 'A15–A18: Projects' },
     ],
   },
 ];

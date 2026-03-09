@@ -1,5 +1,7 @@
 import CodeBlock, { DiagramBlock } from '../components/CodeBlock';
 import Callout from '../components/Callout';
+import InfographicCard from '../components/InfographicCard';
+import EnhancementBox from '../components/EnhancementBox';
 
 export function MLlib() {
   return (
@@ -28,10 +30,33 @@ Transformer: Transforms one DataFrame to another (adds columns)
 Estimator:   Algorithm that fits on data to produce a Model
 Pipeline:    Chain of Transformers and Estimators`}
         </DiagramBlock>
+        <InfographicCard title="ML pipeline flow" caption="Transformers prepare features; Estimator fits and produces a Model.">
+          <svg viewBox="0 0 300 60" className="w-full max-w-md h-auto" aria-hidden>
+            <rect x="5" y="18" width="55" height="28" rx="4" fill="#1e293b" stroke="#475569" />
+            <text x="32" y="36" textAnchor="middle" fill="#94a3b8" fontSize="10">Raw Data</text>
+            <path d="M 65 32 L 85 32" stroke="#22c55e" strokeWidth="2" />
+            <rect x="88" y="18" width="55" height="28" rx="4" fill="#3b82f6" opacity="0.8" />
+            <text x="115" y="36" textAnchor="middle" fill="white" fontSize="9">Transformer</text>
+            <path d="M 148 32 L 168 32" stroke="#22c55e" strokeWidth="2" />
+            <rect x="171" y="18" width="55" height="28" rx="4" fill="#a855f7" opacity="0.8" />
+            <text x="198" y="36" textAnchor="middle" fill="white" fontSize="9">Estimator</text>
+            <path d="M 231 32 L 251 32" stroke="#22c55e" strokeWidth="2" />
+            <rect x="254" y="18" width="42" height="28" rx="4" fill="#eab308" opacity="0.9" />
+            <text x="275" y="36" textAnchor="middle" fill="white" fontSize="9">Model</text>
+          </svg>
+        </InfographicCard>
 
         <p className="text-slate-400 text-sm mt-4 mb-2">
           <strong className="text-slate-300">Plain English:</strong> A <strong>Transformer</strong> changes your data (e.g. turn words into numbers). An <strong>Estimator</strong> learns from data and gives you a model (like a decision tree or a recommendation model). A <strong>Pipeline</strong> chains them: step 1 transform, step 2 transform, step 3 train model — all in one go!
         </p>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mt-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Building an ML pipeline</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li><strong className="text-slate-300">Prepare features:</strong> Add Transformer stages (StringIndexer for categories, VectorAssembler to combine columns into one &quot;features&quot; vector, StandardScaler to normalize). Each transforms the DataFrame and passes it to the next.</li>
+            <li><strong className="text-slate-300">Add estimator:</strong> Add the algorithm (e.g. RandomForestClassifier, ALS) with <code className="text-slate-300">featuresCol</code> and <code className="text-slate-300">labelCol</code>. It fits on the training data and produces a Model.</li>
+            <li><strong className="text-slate-300">Fit and predict:</strong> <code className="text-slate-300">pipeline.fit(train)</code> returns a PipelineModel (all stages fitted). Call <code className="text-slate-300">model.transform(test)</code> to get predictions. Save/load with <code className="text-slate-300">model.save(path)</code> and <code className="text-slate-300">PipelineModel.load(path)</code>.</li>
+          </ul>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6 mb-6">
           <div className="bg-blue-950/20 border border-blue-500/20 rounded-xl p-4">
             <h4 className="text-sm font-bold text-blue-400 mb-1">Transformer</h4>
@@ -53,9 +78,17 @@ Pipeline:    Chain of Transformers and Estimators`}
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Feature Engineering
         </h3>
-        <p className="text-slate-400 text-sm mb-4">
+        <p className="text-slate-400 text-sm mb-2">
           <strong className="text-slate-300">In plain English:</strong> <strong>Feature engineering</strong> means turning your raw data into numbers and shapes the model can use. For example: turn &quot;Engineering&quot; / &quot;Marketing&quot; into 0 and 1, scale numbers so they&apos;re in a similar range, or combine several columns into one &quot;feature vector.&quot; Good features = better predictions!
         </p>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Feature engineering tools</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li><strong className="text-slate-300">Categorical:</strong> StringIndexer maps strings to 0,1,2,...; OneHotEncoder turns that into a binary vector. Use for columns like department or category.</li>
+            <li><strong className="text-slate-300">Numeric:</strong> VectorAssembler combines multiple numeric columns into one &quot;features&quot; column (required by most ML algorithms). StandardScaler normalizes to mean 0, std 1. Bucketizer bins continuous values into ranges.</li>
+            <li><strong className="text-slate-300">Text:</strong> Tokenizer splits text into words; HashingTF + IDF build TF-IDF vectors for text classification or similarity.</li>
+          </ul>
+        </div>
         <CodeBlock
           title="Feature Engineering Tools"
           code={`from pyspark.ml.feature import *
@@ -95,6 +128,14 @@ bucketizer = Bucketizer(
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Classification Example
         </h3>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Classification pipeline</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li><strong className="text-slate-300">Load data:</strong> Read CSV (e.g. <code className="text-slate-300">C:/data/data.csv</code>), then <code className="text-slate-300">randomSplit([0.8, 0.2])</code> for train/test.</li>
+            <li><strong className="text-slate-300">Build pipeline:</strong> List of stages: StringIndexer for label and categorical features, OneHotEncoder, VectorAssembler, StandardScaler, then the classifier (e.g. RandomForestClassifier with numTrees, maxDepth).</li>
+            <li><strong className="text-slate-300">Train:</strong> <code className="text-slate-300">model = pipeline.fit(train)</code>. Evaluate with <code className="text-slate-300">MulticlassClassificationEvaluator</code> (metricName=&quot;accuracy&quot;) on <code className="text-slate-300">model.transform(test)</code>. Save model to <code className="text-slate-300">C:/data/models/</code> for reuse.</li>
+          </ul>
+        </div>
         <CodeBlock
           title="Complete Classification Pipeline"
           code={`from pyspark.ml import Pipeline
@@ -139,9 +180,17 @@ print(f"Accuracy: {accuracy:.4f}")`}
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Hyperparameter Tuning
         </h3>
-        <p className="text-slate-400 text-sm mb-4">
+        <p className="text-slate-400 text-sm mb-2">
           <strong className="text-slate-300">Plain English:</strong> <strong>Hyperparameters</strong> are knobs you turn before training (e.g. &quot;how many trees?&quot; or &quot;how deep?&quot;). <strong>Tuning</strong> means trying different combinations and picking the one that works best — like testing different amounts of sugar in a recipe until it tastes just right!
         </p>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Hyperparameter tuning</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li><strong className="text-slate-300">ParamGridBuilder:</strong> Add ranges for parameters (e.g. numTrees [50,100,200], maxDepth [3,5,7]) with <code className="text-slate-300">.addGrid(estimator.param, values).build()</code>. This defines all combinations to try.</li>
+            <li><strong className="text-slate-300">CrossValidator:</strong> Pass the pipeline (or estimator), paramGrid, an Evaluator (e.g. accuracy), and numFolds (e.g. 5). <code className="text-slate-300">cv_model = crossval.fit(train)</code> runs cross-validation for each param set and picks the best.</li>
+            <li><strong className="text-slate-300">Best model:</strong> <code className="text-slate-300">cv_model.bestModel</code> gives the fitted pipeline with the best params. Evaluate on test set to report final accuracy.</li>
+          </ul>
+        </div>
         <CodeBlock
           title="Cross-Validation & Grid Search"
           code={`from pyspark.ml.tuning import ParamGridBuilder, CrossValidator
@@ -194,9 +243,17 @@ export function Performance() {
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Configuration Tuning
         </h3>
-        <p className="text-slate-400 text-sm mb-4">
+        <p className="text-slate-400 text-sm mb-2">
           <strong className="text-slate-300">Simple words:</strong> These settings tell Spark how much memory to use per worker, how many workers, how many partitions to use for shuffles, and whether to use smart optimizations (adaptive execution). Bigger data or heavier jobs usually need more memory and more partitions.
         </p>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Key config options</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li><strong className="text-slate-300">Memory:</strong> <code className="text-slate-300">spark.executor.memory</code>, <code className="text-slate-300">spark.driver.memory</code> — set based on your cluster and job size. Too small causes OOM; too large can cause GC pauses.</li>
+            <li><strong className="text-slate-300">Shuffle:</strong> <code className="text-slate-300">spark.sql.shuffle.partitions</code> (default 200) — more partitions can improve parallelism but add overhead. Enable <code className="text-slate-300">spark.sql.adaptive.enabled</code> so Spark can coalesce at runtime.</li>
+            <li><strong className="text-slate-300">Broadcast:</strong> <code className="text-slate-300">spark.sql.autoBroadcastJoinThreshold</code> — tables smaller than this (e.g. 50m) are broadcast. Dynamic allocation (<code className="text-slate-300">dynamicAllocation.enabled</code>) scales executors based on load.</li>
+          </ul>
+        </div>
         <CodeBlock
           title="Spark Configuration"
           code={`spark = SparkSession.builder \\
@@ -222,6 +279,14 @@ export function Performance() {
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Optimization Techniques
         </h3>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Optimization checklist</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li><strong className="text-slate-300">Partitioning:</strong> Use <code className="text-slate-300">repartition(n)</code> to increase partitions (causes shuffle) or <code className="text-slate-300">coalesce(n)</code> to reduce (no shuffle). Aim for 2–4× cores. Partition read data by a frequently filtered column when writing.</li>
+            <li><strong className="text-slate-300">Avoid shuffles:</strong> Prefer <code className="text-slate-300">reduceByKey</code> over <code className="text-slate-300">groupByKey</code>; use <code className="text-slate-300">broadcast(small_df)</code> for small join side. Filter and select early to reduce data size.</li>
+            <li><strong className="text-slate-300">Cache wisely:</strong> Cache DataFrames used multiple times; call <code className="text-slate-300">unpersist()</code> when done. Use Parquet/ORC for storage; prefer built-in functions over UDFs when possible.</li>
+          </ul>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { t: 'Partitioning', items: ['repartition(n): Increase/decrease partitions (shuffle)', 'coalesce(n): Decrease partitions (no shuffle)', 'Rule: 2-4x number of cores'] },
@@ -251,9 +316,17 @@ export function Performance() {
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Data Skew Handling (Salting)
         </h3>
-        <p className="text-slate-400 text-sm mb-4">
+        <p className="text-slate-400 text-sm mb-2">
           <strong className="text-slate-300">In plain English:</strong> <strong>Data skew</strong> means one or two keys have way more data than others — so one worker does most of the work and others sit idle. <strong>Salting</strong> is a trick: we add a random number to the key so that big key gets split into many smaller keys and spread across workers. After the join we can combine the pieces back.
         </p>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Salting for skew</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li><strong className="text-slate-300">Identify skew:</strong> One or few keys have most of the rows; one partition is much larger than others. Check Spark UI or task durations.</li>
+            <li><strong className="text-slate-300">Salt the big table:</strong> Add a random salt column (e.g. 0..SALT_FACTOR-1) and a new key = original_key + &quot;_&quot; + salt. This spreads the heavy key across many partitions.</li>
+            <li><strong className="text-slate-300">Replicate the small table:</strong> Cross-join the lookup table with a list of salt values so each key appears SALT_FACTOR times with salted_key. Join on salted_key. Optionally aggregate after the join to combine salt buckets.</li>
+          </ul>
+        </div>
         <CodeBlock
           title="Salting Technique for Data Skew"
           code={`from pyspark.sql.functions import rand, concat, lit, col
@@ -281,9 +354,16 @@ result = df_salted.join(lookup_salted, "salted_key", "inner")`}
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Broadcast Join & Explain Plan
         </h3>
-        <p className="text-slate-400 text-sm mb-4">
+        <p className="text-slate-400 text-sm mb-2">
           <strong className="text-slate-300">Kid-friendly:</strong> When one table is small (e.g. a list of country codes), instead of moving huge amounts of data around, we <strong>broadcast</strong> the small table — send one copy to every worker. Then each worker can do the join locally. <strong>Explain plan</strong> shows you how Spark will run your query so you can spot slow parts.
         </p>
+        <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
+          <h4 className="text-sm font-bold text-spark-light mb-2">Step-by-step: Broadcast join and debugging</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
+            <li><strong className="text-slate-300">When to broadcast:</strong> The smaller join table is under the broadcast threshold (default ~10MB). Use <code className="text-slate-300">join(broadcast(small_df), ...)</code> to force broadcast and avoid shuffle. Good for dimension tables.</li>
+            <li><strong className="text-slate-300">Explain plan:</strong> <code className="text-slate-300">df.explain()</code> shows logical and physical plan; <code className="text-slate-300">df.explain(True)</code> adds parsed plan; <code className="text-slate-300">df.explain("formatted")</code> is easier to read. Look for BroadcastHashJoin, large shuffles, or full scans.</li>
+          </ul>
+        </div>
         <CodeBlock
           title="Broadcast Join & Debugging"
           code={`from pyspark.sql.functions import broadcast
@@ -301,6 +381,11 @@ df.explain()             # Simple plan
 df.explain(True)         # Extended plan
 df.explain("formatted")  # Formatted plan`}
         />
+        <EnhancementBox title="MLlib & Performance — enhancements" items={[
+          'Train a classification pipeline, run CrossValidator with a small param grid, and inspect bestModel params.',
+          'Apply salting to a skewed join (e.g. one key has 80% of rows) and compare task duration distribution in the UI.',
+          'Tune spark.sql.shuffle.partitions and spark.sql.adaptive.enabled on a large join and measure end-to-end time.',
+        ]} />
       </div>
     </section>
   );
