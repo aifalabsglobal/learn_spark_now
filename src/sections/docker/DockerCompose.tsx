@@ -14,6 +14,10 @@ export default function DockerCompose() {
         Compose lets you define and run <strong>multi-container</strong> apps in one file. Instead of multiple <code>docker run</code> commands, you describe services (app, database, cache) in <code>docker-compose.yml</code> and start everything with <code>docker compose up</code>.
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        Define services with build context or image, ports, environment, and depends_on. Use volumes for persistent data. Run with <code className="text-slate-300">docker compose up -d</code>; tear down with <code className="text-slate-300">docker compose down</code>.
+      </p>
+
       <div id="docker-compose-basics" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-docker rounded-full" />

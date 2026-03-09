@@ -1,4 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function KafkaProduction() {
   return (
@@ -8,6 +9,10 @@ export default function KafkaProduction() {
         <div className="h-px flex-1 bg-gradient-to-r from-kafka/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Production Architecture</h2>
+
+      <Callout type="info" title="In Plain English">
+        In production, Kafka is the <strong>event backbone</strong>: microservices publish and subscribe; stream processors (Flink, Spark, Kafka Streams) transform and load into data lakes, warehouses, and ML pipelines. Add Schema Registry, monitoring, and multi-region replication for scale and reliability.
+      </Callout>
 
       <p className="text-slate-400 text-sm mb-6">
         Real production pipelines combine Kafka with <strong className="text-slate-300">Flink</strong>, <strong className="text-slate-300">Spark</strong>, data lakes, warehouses, and ML models.

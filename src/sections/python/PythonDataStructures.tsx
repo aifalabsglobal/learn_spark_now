@@ -1,4 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function PythonDataStructures() {
   return (
@@ -8,6 +9,14 @@ export default function PythonDataStructures() {
         <div className="h-px flex-1 bg-gradient-to-r from-python/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Data Structures</h2>
+
+      <Callout type="info" title="In Plain English">
+        <strong>Lists</strong> are ordered, mutable sequences. <strong>Dicts</strong> map keys to values. <strong>Sets</strong> are unordered collections of unique items. <strong>Tuples</strong> are immutable ordered pairs or records — useful for multiple return values.
+      </Callout>
+
+      <p className="text-slate-400 text-sm mb-6">
+        Use indexing and slicing for lists; get/set by key for dicts. Sets remove duplicates. Tuples are hashable and can be unpacked into variables.
+      </p>
 
       <div id="python-lists" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -23,6 +32,7 @@ nums[-1]     # 6 (last)
 nums[1:4]    # [2, 3, 4] (slicing)
 len(nums)
 sum(nums)`}
+          language="python"
         />
       </div>
 
@@ -58,6 +68,7 @@ x, y = point
 def get_min_max(arr):
     return min(arr), max(arr)
 mn, mx = get_min_max([1, 5, 3])`}
+          language="python"
         />
       </div>
     </section>

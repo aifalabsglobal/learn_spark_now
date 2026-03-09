@@ -14,6 +14,10 @@ export default function DatabricksDelta() {
         <strong>Delta Lake</strong> is storage for your tables that adds <strong>ACID</strong> (transactions, no partial writes), <strong>time travel</strong> (query past versions), and <strong>optimizations</strong> (OPTIMIZE, Z-ORDER). Your data still lives in cloud object storage (S3, ADLS); Delta is the format on top.
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        Write and read with the standard Spark DataFrame API using format &quot;delta&quot;. Use OPTIMIZE to compact small files and Z-ORDER to cluster by key columns for faster filters and joins.
+      </p>
+
       <div id="databricks-delta-basics" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-databricks rounded-full" />

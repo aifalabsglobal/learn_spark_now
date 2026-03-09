@@ -1,4 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function KafkaInternals() {
   return (
@@ -8,6 +9,10 @@ export default function KafkaInternals() {
         <div className="h-px flex-1 bg-gradient-to-r from-kafka/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Kafka Internals</h2>
+
+      <Callout type="info" title="In Plain English">
+        Kafka stores each partition as a <strong>commit log</strong>: an ordered, append-only sequence of segments on disk. Sequential writes and OS page cache make it very fast; zero-copy sendfile reduces CPU when serving reads.
+      </Callout>
 
       <p className="text-slate-400 text-sm mb-6">
         Kafka works as a <strong className="text-slate-300">distributed commit log</strong>. Data is stored sequentially for high throughput.

@@ -13,6 +13,10 @@ export default function PostgresCheatsheet() {
         Keep this page open while writing SQL. Covers the most common clauses and functions.
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        Clause order in a SELECT is fixed: SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, LIMIT. Use DML for insert/update/delete; DDL for tables and indexes; wrap multi-statement changes in BEGIN/COMMIT for transactions.
+      </p>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         <div className="bg-slate-800/40 border border-slate-700/40 rounded-xl p-5">
           <h4 className="text-sm font-bold text-postgres-light mb-3">Query clauses (order matters)</h4>

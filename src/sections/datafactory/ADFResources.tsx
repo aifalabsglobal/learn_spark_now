@@ -1,4 +1,5 @@
 import { ExternalLink } from 'lucide-react';
+import Callout from '../../components/Callout';
 
 const LEARN_LINKS = [
   { title: 'Introduction to Azure Data Factory', url: 'https://learn.microsoft.com/en-us/azure/data-factory/introduction' },
@@ -22,6 +23,9 @@ export default function ADFResources() {
         <div className="h-px flex-1 bg-gradient-to-r from-adf/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-6">Microsoft Learn — Azure Data Factory</h2>
+      <Callout type="info" title="Official resources">
+        Use these Microsoft Learn links to go deeper on pipelines, Copy activity, integration runtimes, datasets, and transformations. Start with the introduction and quickstart, then explore Copy and transform tutorials.
+      </Callout>
       <p className="text-slate-400 text-sm mb-6">
         Deepen your learning with official documentation and tutorials on Microsoft Learn.
       </p>

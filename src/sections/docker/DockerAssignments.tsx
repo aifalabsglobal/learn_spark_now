@@ -1,3 +1,5 @@
+import Callout from '../../components/Callout';
+
 export default function DockerAssignments() {
   const labs = [
     { week: 1, title: 'Use Case Analysis', desc: 'Document Docker benefits for microservices, CI/CD, and local dev.' },
@@ -15,7 +17,10 @@ export default function DockerAssignments() {
         <div className="h-px flex-1 bg-gradient-to-r from-docker/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-6">Docker Course Assignments</h2>
-      <div className="space-y-4">
+      <Callout type="info" title="Hands-on">
+        Complete these labs as you go through the course. They cover Dockerfile, single and multi-container runs, Compose, networking, volumes, and production-ready images.
+      </Callout>
+      <div className="space-y-4 mt-6">
         {labs.map((a) => (
           <div
             key={a.week}

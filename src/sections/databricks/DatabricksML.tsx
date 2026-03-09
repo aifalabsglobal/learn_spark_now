@@ -14,6 +14,10 @@ export default function DatabricksML() {
         <strong>MLflow</strong> is built into Databricks. You log experiments (parameters, metrics, artifacts), compare runs, and register models. <strong className="text-slate-300">Databricks AutoML</strong> can train baseline models from a table with minimal code — useful for quick prototypes.
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        Set an experiment, start a run, log params and metrics, and log the model. Use the Experiments UI to compare runs and promote models to the Model Registry. AutoML is available from the ML menu for classification and regression on tabular data.
+      </p>
+
       <div id="databricks-mlflow" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-databricks rounded-full" />

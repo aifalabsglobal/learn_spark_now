@@ -14,6 +14,10 @@ export default function DatabricksSQL() {
         <strong>Databricks SQL</strong> lets analysts run SQL queries and build dashboards without writing Spark code. You create a &quot;SQL warehouse&quot; (a managed Spark cluster for SQL), then write queries and visualize results in dashboards — similar to a cloud data warehouse experience.
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        SQL warehouses run on the same Delta tables as your Spark workloads. Create queries and dashboards in the SQL workspace; reference tables with the three-level name catalog.schema.table when using Unity Catalog.
+      </p>
+
       <div id="databricks-sql-warehouse" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-databricks rounded-full" />

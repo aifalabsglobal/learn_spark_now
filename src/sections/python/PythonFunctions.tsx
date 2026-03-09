@@ -1,4 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function PythonFunctions() {
   return (
@@ -8,6 +9,10 @@ export default function PythonFunctions() {
         <div className="h-px flex-1 bg-gradient-to-r from-python/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Functions &amp; Modules</h2>
+
+      <Callout type="info" title="In Plain English">
+        Use <strong>def</strong> to define functions; <strong>return</strong> a value. Default arguments and <strong>*args</strong> / <strong>**kwargs</strong> allow flexible signatures. Organize code in <strong>modules</strong> and import what you need.
+      </Callout>
 
       <div id="python-def" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -25,6 +30,7 @@ greet("Bob", "Hi")       # "Hi, Bob!"
 # *args and **kwargs
 def log(*args, **kwargs):
     print(args, kwargs)`}
+          language="python"
         />
       </div>
 
@@ -44,6 +50,7 @@ from os import path as os_path
 # Your own module: save as mymodule.py, then
 # import mymodule
 # mymodule.my_function()`}
+          language="python"
         />
       </div>
     </section>

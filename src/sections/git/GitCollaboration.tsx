@@ -13,6 +13,10 @@ export default function GitCollaboration() {
         Use a <strong>branch per feature/fix</strong>, then open a <strong>Pull Request (PR)</strong> or <strong>Merge Request (MR)</strong> on GitHub/GitLab for code review before merging into <code className="text-slate-300">main</code>.
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        Push your branch, open a PR to main, get review, then merge. If someone else changed the same files, you may get merge conflicts; resolve the markers in the file, then add and commit to complete the merge.
+      </p>
+
       <div id="git-pr-workflow" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-git rounded-full" />

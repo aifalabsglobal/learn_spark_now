@@ -1,4 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function PythonOOP() {
   return (
@@ -8,6 +9,10 @@ export default function PythonOOP() {
         <div className="h-px flex-1 bg-gradient-to-r from-python/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Classes &amp; OOP</h2>
+
+      <Callout type="info" title="In Plain English">
+        <strong>Classes</strong> define types with attributes and methods. <strong>__init__</strong> is the constructor; <strong>self</strong> is the instance. Use <strong>inheritance</strong> to extend a class and <strong>super()</strong> to call the parent.
+      </Callout>
 
       <div id="python-classes" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -43,6 +48,7 @@ p.greet()  # "Hi, I'm Alice"`}
 
     def greet(self):
         return f"Student {self.student_id}: {super().greet()}"`}
+          language="python"
         />
       </div>
     </section>

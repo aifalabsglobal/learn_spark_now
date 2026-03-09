@@ -13,6 +13,10 @@ export default function DockerProduction() {
         Use specific image tags (not <code>latest</code>), run as non-root, scan images for vulnerabilities, limit memory/CPU, and use secrets management (e.g. Docker secrets, env files not in repo).
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        Multi-stage builds keep images small and secure. Use .dockerignore to exclude unneeded files. One process per container and HEALTHCHECK help orchestrators manage your app. For scale, use Kubernetes, ECS, or Swarm.
+      </p>
+
       <div id="docker-best-practices" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-docker rounded-full" />

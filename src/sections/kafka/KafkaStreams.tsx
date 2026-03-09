@@ -1,4 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function KafkaStreams() {
   return (
@@ -8,6 +9,10 @@ export default function KafkaStreams() {
         <div className="h-px flex-1 bg-gradient-to-r from-kafka/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Kafka Streams</h2>
+
+      <Callout type="info" title="In Plain English">
+        <strong>Kafka Streams</strong> is a lightweight Java library (and Kafka Streams API in other ecosystems) for stream processing: read from Kafka, apply map/filter/join/aggregate/window operations, and write results back to Kafka. Use it for real-time aggregations and joins without a separate cluster.
+      </Callout>
 
       <p className="text-slate-400 text-sm mb-6">
         Stream processing operations: <code className="text-slate-300">map</code>, <code className="text-slate-300">filter</code>, <code className="text-slate-300">join</code>, <code className="text-slate-300">aggregate</code>, <code className="text-slate-300">window</code>.

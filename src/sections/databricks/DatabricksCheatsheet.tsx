@@ -1,4 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function DatabricksCheatsheet() {
   return (
@@ -8,7 +9,10 @@ export default function DatabricksCheatsheet() {
         <div className="h-px flex-1 bg-gradient-to-r from-databricks/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-4">Databricks Quick Reference</h2>
-      <p className="text-slate-400 text-sm mb-8">Copy-paste snippets for common tasks on the platform.</p>
+      <Callout type="info" title="Quick reference">
+        Copy-paste snippets for Spark in notebooks, Delta OPTIMIZE, MLflow logging, and Unity Catalog naming.
+      </Callout>
+      <p className="text-slate-400 text-sm mb-8">Use these in notebooks and SQL for common platform tasks.</p>
 
       <div className="space-y-6">
         <div>

@@ -14,6 +14,10 @@ export default function DatabricksJobs() {
         <strong>Jobs</strong> run your notebooks or scripts on a schedule or trigger. A <strong className="text-slate-300">workflow</strong> can have multiple tasks (e.g. ingest → transform → train) with dependencies, so the next task runs only after the previous one succeeds — like a pipeline.
       </Callout>
 
+      <p className="text-slate-400 text-sm mb-6">
+        Create a job in the Workflows UI, add tasks (notebook, JAR, or Python script), set a cluster per task or use a job cluster. Use task dependencies to chain ingest, transform, and load steps. Schedule with cron or trigger via API.
+      </p>
+
       <div id="databricks-job-basics" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-databricks rounded-full" />

@@ -1,4 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function PythonFileIO() {
   return (
@@ -8,6 +9,10 @@ export default function PythonFileIO() {
         <div className="h-px flex-1 bg-gradient-to-r from-python/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">File I/O &amp; Exceptions</h2>
+
+      <Callout type="info" title="In Plain English">
+        Use <strong>open()</strong> with a <strong>with</strong> block so the file is closed automatically. Use <strong>try/except</strong> to handle errors; <strong>else</strong> runs when no exception occurs, <strong>finally</strong> always runs for cleanup.
+      </Callout>
 
       <div id="python-files" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -26,6 +31,7 @@ with open("out.txt", "w") as f:
     f.write("Hello\\n")
 
 # Append: open(..., "a")`}
+          language="python"
         />
       </div>
 
@@ -46,6 +52,7 @@ else:
     print("Success")
 finally:
     print("Cleanup")`}
+          language="python"
         />
       </div>
     </section>

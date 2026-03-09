@@ -1,4 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function KafkaReplication() {
   return (
@@ -8,6 +9,10 @@ export default function KafkaReplication() {
         <div className="h-px flex-1 bg-gradient-to-r from-kafka/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Replication & Fault Tolerance</h2>
+
+      <Callout type="info" title="In Plain English">
+        Each partition has one <strong>leader</strong> (handles reads and writes) and one or more <strong>followers</strong> that replicate the log. If the leader fails, a follower is elected leader so the cluster stays available without data loss (when replication factor is 2 or more).
+      </Callout>
 
       <p className="text-slate-400 text-sm mb-6">
         Each partition has a <strong className="text-slate-300">leader</strong> and one or more <strong className="text-slate-300">followers</strong>. The leader handles reads and writes; followers replicate the log.

@@ -1,4 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 import { DiagramBlock } from '../../components/CodeBlock';
 
 export default function KafkaProducersConsumers() {
@@ -9,6 +10,14 @@ export default function KafkaProducersConsumers() {
         <div className="h-px flex-1 bg-gradient-to-r from-kafka/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Producers and Consumers</h2>
+
+      <Callout type="info" title="In Plain English">
+        <strong>Producers</strong> send messages to topics; <strong>consumers</strong> read from topics, often in a group so each partition is processed by one consumer. Partition is chosen by key (same key → same partition) or round-robin when no key is set.
+      </Callout>
+
+      <p className="text-slate-400 text-sm mb-6">
+        Use the Kafka client library for your language (e.g. kafka-python) to create a producer and consumer. Call send() with topic and payload; call poll() or iterate in a loop to consume. Flush the producer before exit to ensure all messages are delivered.
+      </p>
 
       <div id="kafka-producer-workflow" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -41,6 +50,7 @@ producer = KafkaProducer(bootstrap_servers='localhost:9092')
 
 producer.send('orders', b'order123')
 producer.flush()`}
+          language="python"
         />
       </div>
 
@@ -57,6 +67,7 @@ consumer = KafkaConsumer('orders', bootstrap_servers='localhost:9092')
 
 for msg in consumer:
     print(msg.value)`}
+          language="python"
         />
       </div>
 

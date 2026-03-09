@@ -1,4 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
 
 export default function DockerNetworkingVolumes() {
   return (
@@ -8,6 +9,10 @@ export default function DockerNetworkingVolumes() {
         <div className="h-px flex-1 bg-gradient-to-r from-docker/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8">Networking & Volumes</h2>
+
+      <Callout type="info" title="In Plain English">
+        Containers on the same <strong>network</strong> can talk by service name. Use <strong>volumes</strong> to persist data so it survives container restarts; use bind mounts in dev for live code sync.
+      </Callout>
 
       <div id="docker-networking" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
