@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.vercel/
+
+# Env and secrets
+.env
+.env.local
+.env.*.local
+
+# IDE and OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs and cache
+*.log
+.npm
+.cache
