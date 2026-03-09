@@ -32,6 +32,10 @@ import {
   PythonFundamentals, PythonControlFlow, PythonDataStructures, PythonFunctions,
   PythonOOP, PythonFileIO, PythonCheatsheet,
 } from './sections/python';
+import {
+  PostgresFundamentals, PostgresSQLBasics, PostgresDDL, PostgresAdvanced,
+  PostgresHandsOn, PostgresCheatsheet,
+} from './sections/postgres';
 
 const SPARK_SECTION_IDS = [
   'fundamentals', 'what-is-spark', 'why-spark', 'installation', 'first-app',
@@ -280,93 +284,30 @@ function App() {
         />
       </div>
 
-      {/* Course switcher — dropdown */}
-      <div className="fixed top-1 left-0 right-0 z-40 flex justify-center lg:justify-end lg:pr-4 lg:pl-[17rem]">
+      {/* Course switcher — fixed at top, always visible */}
+      <div className="fixed top-1.5 left-4 right-4 z-40 flex justify-center sm:justify-end lg:left-auto lg:right-6 lg:pl-[17rem]">
         <div ref={courseDropdownRef} className="relative">
           <button
             onClick={() => setCourseDropdownOpen(!courseDropdownOpen)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-slate-800/90 border border-slate-700/80 shadow-lg backdrop-blur-sm hover:bg-slate-700/90 ${
-              course === 'python' ? 'text-python-light border-python/30' : course === 'postgres' ? 'text-postgres-light border-postgres/30' : course === 'docker' ? 'text-docker-light border-docker/30' : course === 'git' ? 'text-git-light border-git/30' : course === 'kafka' ? 'text-kafka-light border-kafka/30' : course === 'datafactory' ? 'text-adf-light border-adf/30' : course === 'databricks' ? 'text-databricks-light border-databricks/30' : 'text-spark-light border-spark/30'
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all bg-slate-800 border-2 shadow-lg hover:bg-slate-700 ${
+              course === 'python' ? 'text-python-light border-python/50' : course === 'postgres' ? 'text-postgres-light border-postgres/50' : course === 'docker' ? 'text-docker-light border-docker/50' : course === 'git' ? 'text-git-light border-git/50' : course === 'kafka' ? 'text-kafka-light border-kafka/50' : course === 'datafactory' ? 'text-adf-light border-adf/50' : course === 'databricks' ? 'text-databricks-light border-databricks/50' : 'text-spark-light border-spark/50'
             }`}
           >
             <Zap size={18} className="shrink-0" />
+            <span className="hidden sm:inline">Course:</span>
             {course === 'python' ? 'Python' : course === 'postgres' ? 'PostgreSQL & SQL' : course === 'docker' ? 'Docker' : course === 'git' ? 'Git' : course === 'datafactory' ? 'Azure Data Factory' : course === 'databricks' ? 'Databricks' : course === 'spark' ? 'Apache Spark' : 'Apache Kafka'}
-            <ChevronDown size={16} className={`shrink-0 transition-transform ${courseDropdownOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown size={18} className={`shrink-0 transition-transform ${courseDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
           {courseDropdownOpen && (
-            <div className="absolute top-full left-0 mt-1 min-w-[10rem] rounded-lg bg-slate-800 border border-slate-700/80 shadow-xl overflow-hidden z-50">
-              <button
-                onClick={() => switchCourse('spark')}
-                className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${
-                  course === 'spark' ? 'bg-spark/20 text-spark-light' : 'text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <Zap size={16} className="shrink-0 text-spark" />
-                Apache Spark
-              </button>
-              <button
-                onClick={() => switchCourse('kafka')}
-                className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${
-                  course === 'kafka' ? 'bg-kafka/20 text-kafka-light' : 'text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <Zap size={16} className="shrink-0 text-kafka" />
-                Apache Kafka
-              </button>
-              <button
-                onClick={() => switchCourse('docker')}
-                className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${
-                  course === 'docker' ? 'bg-docker/20 text-docker-light' : 'text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <Zap size={16} className="shrink-0 text-docker" />
-                Docker
-              </button>
-              <button
-                onClick={() => switchCourse('databricks')}
-                className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${
-                  course === 'databricks' ? 'bg-databricks/20 text-databricks-light' : 'text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <Zap size={16} className="shrink-0 text-databricks" />
-                Databricks
-              </button>
-              <button
-                onClick={() => switchCourse('datafactory')}
-                className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${
-                  course === 'datafactory' ? 'bg-adf/20 text-adf-light' : 'text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <Zap size={16} className="shrink-0 text-adf" />
-                Azure Data Factory
-              </button>
-              <button
-                onClick={() => switchCourse('git')}
-                className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${
-                  course === 'git' ? 'bg-git/20 text-git-light' : 'text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <Zap size={16} className="shrink-0 text-git" />
-                Git
-              </button>
-              <button
-                onClick={() => switchCourse('python')}
-                className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${
-                  course === 'python' ? 'bg-python/20 text-python-light' : 'text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <Zap size={16} className="shrink-0 text-python" />
-                Python
-              </button>
-              <button
-                onClick={() => switchCourse('postgres')}
-                className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${
-                  course === 'postgres' ? 'bg-postgres/20 text-postgres-light' : 'text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <Zap size={16} className="shrink-0 text-postgres" />
-                PostgreSQL &amp; SQL
-              </button>
+            <div className="absolute top-full right-0 mt-1 min-w-[11rem] rounded-lg bg-slate-800 border-2 border-slate-600 shadow-xl overflow-hidden z-50">
+              <button onClick={() => switchCourse('spark')} className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${course === 'spark' ? 'bg-spark/20 text-spark-light' : 'text-slate-300 hover:bg-slate-700'}`}><Zap size={16} className="shrink-0 text-spark" />Apache Spark</button>
+              <button onClick={() => switchCourse('kafka')} className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${course === 'kafka' ? 'bg-kafka/20 text-kafka-light' : 'text-slate-300 hover:bg-slate-700'}`}><Zap size={16} className="shrink-0 text-kafka" />Apache Kafka</button>
+              <button onClick={() => switchCourse('docker')} className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${course === 'docker' ? 'bg-docker/20 text-docker-light' : 'text-slate-300 hover:bg-slate-700'}`}><Zap size={16} className="shrink-0 text-docker" />Docker</button>
+              <button onClick={() => switchCourse('databricks')} className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${course === 'databricks' ? 'bg-databricks/20 text-databricks-light' : 'text-slate-300 hover:bg-slate-700'}`}><Zap size={16} className="shrink-0 text-databricks" />Databricks</button>
+              <button onClick={() => switchCourse('datafactory')} className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${course === 'datafactory' ? 'bg-adf/20 text-adf-light' : 'text-slate-300 hover:bg-slate-700'}`}><Zap size={16} className="shrink-0 text-adf" />Azure Data Factory</button>
+              <button onClick={() => switchCourse('git')} className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${course === 'git' ? 'bg-git/20 text-git-light' : 'text-slate-300 hover:bg-slate-700'}`}><Zap size={16} className="shrink-0 text-git" />Git</button>
+              <button onClick={() => switchCourse('python')} className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${course === 'python' ? 'bg-python/20 text-python-light' : 'text-slate-300 hover:bg-slate-700'}`}><Zap size={16} className="shrink-0 text-python" />Python</button>
+              <button onClick={() => switchCourse('postgres')} className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-left transition-colors ${course === 'postgres' ? 'bg-postgres/20 text-postgres-light' : 'text-slate-300 hover:bg-slate-700'}`}><Zap size={16} className="shrink-0 text-postgres" />PostgreSQL &amp; SQL</button>
             </div>
           )}
         </div>
@@ -376,7 +317,7 @@ function App() {
       <Sidebar activeSection={activeSection} course={course} />
 
       {/* Main Content */}
-      <div ref={mainRef} className="flex-1 lg:ml-64 overflow-y-auto scroll-smooth pt-10" style={{ scrollPaddingTop: '80px' }}>
+      <div ref={mainRef} className="flex-1 lg:ml-64 overflow-y-auto scroll-smooth pt-14" style={{ scrollPaddingTop: '80px' }}>
         {/* Hero */}
         <header className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900" />
@@ -388,6 +329,7 @@ function App() {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px]" />
 
           <div className="relative max-w-5xl mx-auto px-6 py-16 md:py-24">
+            {/* Hero top row: icon + badges */}
             <div className="flex items-center gap-3 mb-6">
               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${course === 'python' ? 'bg-gradient-to-br from-python to-python-light' : course === 'postgres' ? 'bg-gradient-to-br from-postgres to-postgres-light' : course === 'docker' ? 'bg-gradient-to-br from-docker to-docker-light' : course === 'git' ? 'bg-gradient-to-br from-git to-git-light' : course === 'kafka' ? 'bg-gradient-to-br from-kafka to-kafka-light' : course === 'datafactory' ? 'bg-gradient-to-br from-adf to-adf-light' : course === 'databricks' ? 'bg-gradient-to-br from-databricks to-databricks-light' : 'bg-gradient-to-br from-spark to-spark-light pulse-spark'}`}>
                 <Zap size={28} className="text-white" />
@@ -617,13 +559,13 @@ function App() {
                   }}
                   className="group flex items-start gap-3 py-2 px-3 rounded-lg hover:bg-slate-700/30 transition-all text-left"
                 >
-                  <span className={`text-xs font-bold w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5 ${course === 'python' ? 'text-python bg-python/10' : course === 'docker' ? 'text-docker bg-docker/10' : course === 'git' ? 'text-git bg-git/10' : course === 'kafka' ? 'text-kafka bg-kafka/10' : course === 'datafactory' ? 'text-adf bg-adf/10' : course === 'databricks' ? 'text-databricks bg-databricks/10' : 'text-spark bg-spark/10'}`}>
+                  <span className={`text-xs font-bold w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5 ${course === 'python' ? 'text-python bg-python/10' : course === 'postgres' ? 'text-postgres bg-postgres/10' : course === 'docker' ? 'text-docker bg-docker/10' : course === 'git' ? 'text-git bg-git/10' : course === 'kafka' ? 'text-kafka bg-kafka/10' : course === 'datafactory' ? 'text-adf bg-adf/10' : course === 'databricks' ? 'text-databricks bg-databricks/10' : 'text-spark bg-spark/10'}`}>
                     {item.num}
                   </span>
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-medium text-slate-200 group-hover:text-white flex items-center gap-1">
                       {item.title}
-                      <ChevronRight size={12} className={course === 'python' ? 'text-slate-500 group-hover:text-python transition-colors' : course === 'docker' ? 'text-slate-500 group-hover:text-docker transition-colors' : course === 'git' ? 'text-slate-500 group-hover:text-git transition-colors' : course === 'kafka' ? 'text-slate-500 group-hover:text-kafka transition-colors' : course === 'datafactory' ? 'text-slate-500 group-hover:text-adf transition-colors' : course === 'databricks' ? 'text-slate-500 group-hover:text-databricks transition-colors' : 'text-slate-500 group-hover:text-spark transition-colors'} />
+                      <ChevronRight size={12} className={course === 'python' ? 'text-slate-500 group-hover:text-python transition-colors' : course === 'postgres' ? 'text-slate-500 group-hover:text-postgres transition-colors' : course === 'docker' ? 'text-slate-500 group-hover:text-docker transition-colors' : course === 'git' ? 'text-slate-500 group-hover:text-git transition-colors' : course === 'kafka' ? 'text-slate-500 group-hover:text-kafka transition-colors' : course === 'datafactory' ? 'text-slate-500 group-hover:text-adf transition-colors' : course === 'databricks' ? 'text-slate-500 group-hover:text-databricks transition-colors' : 'text-slate-500 group-hover:text-spark transition-colors'} />
                     </div>
                     <div className="text-[11px] text-slate-500 truncate">{item.sub}</div>
                   </div>
@@ -802,13 +744,13 @@ function App() {
           {/* Footer */}
           <footer className="text-center py-10 border-t border-slate-800">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <Zap size={18} className={course === 'python' ? 'text-python' : course === 'docker' ? 'text-docker' : course === 'git' ? 'text-git' : course === 'kafka' ? 'text-kafka' : course === 'datafactory' ? 'text-adf' : course === 'databricks' ? 'text-databricks' : 'text-spark'} />
+              <Zap size={18} className={course === 'python' ? 'text-python' : course === 'postgres' ? 'text-postgres' : course === 'docker' ? 'text-docker' : course === 'git' ? 'text-git' : course === 'kafka' ? 'text-kafka' : course === 'datafactory' ? 'text-adf' : course === 'databricks' ? 'text-databricks' : 'text-spark'} />
               <span className="text-sm font-bold text-white">
-                {course === 'python' ? 'Python, Git, Kafka & Spark Complete Guides' : course === 'docker' ? 'Docker Complete Guide' : course === 'git' ? 'Git, Kafka & Spark Complete Guides' : course === 'kafka' ? 'Apache Kafka & Spark Complete Guides' : course === 'datafactory' ? 'Azure Data Factory · Microsoft Learn' : course === 'databricks' ? 'Databricks Platform Guide' : 'Apache Spark Complete Guide'}
+                {course === 'python' ? 'Python, Git, Kafka & Spark Complete Guides' : course === 'postgres' ? 'PostgreSQL & SQL Complete Guide' : course === 'docker' ? 'Docker Complete Guide' : course === 'git' ? 'Git, Kafka & Spark Complete Guides' : course === 'kafka' ? 'Apache Kafka & Spark Complete Guides' : course === 'datafactory' ? 'Azure Data Factory · Microsoft Learn' : course === 'databricks' ? 'Databricks Platform Guide' : 'Apache Spark Complete Guide'}
               </span>
             </div>
             <p className="text-xs text-slate-500">
-              {course === 'python' ? 'Python: 6 Parts · Fundamentals, Control Flow, Data Structures, Functions, OOP, File I/O · Cheat Sheet' : course === 'docker' ? '6 Weeks · Images, Containers, Compose, Networking · Labs' : course === 'git' ? 'Git: 5 Parts · Branching, Remote, Undo, Collaboration · Cheat Sheet' : course === 'kafka' ? 'Kafka: 8 weeks · 100 Interview Qs · Labs with Docker' : course === 'datafactory' ? 'Content from Microsoft Learn · ETL/ELT · Pipelines · Copy Activity' : course === 'databricks' ? '10 Parts · Delta Lake · MLflow · Jobs · Unity Catalog · Mini Projects' : 'From Fundamentals to Advanced · 7 Parts · 5 Projects · Gamified Assignments (18 tasks, 7 badges)'}
+              {course === 'python' ? 'Python: 6 Parts · Fundamentals, Control Flow, Data Structures, Functions, OOP, File I/O · Cheat Sheet' : course === 'postgres' ? 'PostgreSQL & SQL: 6 Parts · SELECT, JOINs, DDL, Transactions, CTEs, Windows · Cheatsheet' : course === 'docker' ? '6 Weeks · Images, Containers, Compose, Networking · Labs' : course === 'git' ? 'Git: 5 Parts · Branching, Remote, Undo, Collaboration · Cheat Sheet' : course === 'kafka' ? 'Kafka: 8 weeks · 100 Interview Qs · Labs with Docker' : course === 'datafactory' ? 'Content from Microsoft Learn · ETL/ELT · Pipelines · Copy Activity' : course === 'databricks' ? '10 Parts · Delta Lake · MLflow · Jobs · Unity Catalog · Mini Projects' : 'From Fundamentals to Advanced · 7 Parts · 5 Projects · Gamified Assignments (18 tasks, 7 badges)'}
             </p>
           </footer>
         </main>
@@ -818,7 +760,7 @@ function App() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className={`fixed bottom-6 right-6 p-3 rounded-full text-white shadow-lg transition-all z-30 animate-fade-in-up ${course === 'python' ? 'bg-python hover:bg-python-dark' : course === 'kafka' ? 'bg-kafka hover:bg-kafka-dark' : course === 'datafactory' ? 'bg-adf hover:bg-adf-dark' : course === 'databricks' ? 'bg-databricks hover:bg-databricks-dark' : course === 'docker' ? 'bg-docker hover:bg-docker-dark' : course === 'git' ? 'bg-git hover:bg-git-dark' : 'bg-spark hover:bg-spark-dark shadow-spark/20'}`}
+          className={`fixed bottom-6 right-6 p-3 rounded-full text-white shadow-lg transition-all z-30 animate-fade-in-up ${course === 'python' ? 'bg-python hover:bg-python-dark' : course === 'postgres' ? 'bg-postgres hover:bg-postgres-dark' : course === 'kafka' ? 'bg-kafka hover:bg-kafka-dark' : course === 'datafactory' ? 'bg-adf hover:bg-adf-dark' : course === 'databricks' ? 'bg-databricks hover:bg-databricks-dark' : course === 'docker' ? 'bg-docker hover:bg-docker-dark' : course === 'git' ? 'bg-git hover:bg-git-dark' : 'bg-spark hover:bg-spark-dark shadow-spark/20'}`}
         >
           <ArrowUp size={20} />
         </button>
