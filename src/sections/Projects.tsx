@@ -1,4 +1,5 @@
 import CodeBlock, { DiagramBlock } from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function Projects() {
   return (
@@ -8,7 +9,10 @@ export default function Projects() {
         <div className="h-px flex-1 bg-gradient-to-r from-spark/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-4 gradient-text">5 Real-Time Projects</h2>
-      <p className="text-slate-400 mb-10 text-sm">Production-grade projects demonstrating different Spark capabilities — streaming, batch ETL, ML, and more.</p>
+      <p className="text-slate-400 mb-4 text-sm">Production-grade projects demonstrating different Spark capabilities — streaming, batch ETL, ML, and more.</p>
+      <Callout type="info" title="👋 In Plain English">
+        These are <strong>real-world examples</strong> that put everything together: tracking clicks on a website in real time, watching for errors in server logs, building a &quot;customer profile&quot; from lots of data, catching bad transactions (fraud), and recommending movies. Each project uses Spark in a different way so you can see how it works in practice!
+      </Callout>
 
       {/* Project 1 */}
       <div id="project-1" className="mb-16">
@@ -17,6 +21,7 @@ export default function Projects() {
           <div>
             <h3 className="text-xl font-bold text-white">Real-Time E-Commerce Analytics Pipeline</h3>
             <p className="text-sm text-slate-400 mt-1">Process real-time clickstream and order data to generate live dashboards, detect anomalies, and compute metrics.</p>
+            <p className="text-slate-500 text-xs mt-2 italic">In plain English: When people click and buy on a shopping site, this pipeline counts who&apos;s active, which products are trending, and spots weird spikes (anomalies) — all as data flows in live.</p>
           </div>
         </div>
 
@@ -149,6 +154,7 @@ spark.streams.awaitAnyTermination()`}
           <div>
             <h3 className="text-xl font-bold text-white">Log Analysis & Monitoring System</h3>
             <p className="text-sm text-slate-400 mt-1">Parse server logs in real-time, detect errors, compute response time metrics, and trigger alerts.</p>
+            <p className="text-slate-500 text-xs mt-2 italic">In plain English: Servers write lines of text (logs) for every request. This project reads those lines as they come in, finds errors and slow requests, and can warn if one computer is sending way too many requests (possible attack).</p>
           </div>
         </div>
 
@@ -223,6 +229,7 @@ q_ddos = ddos_detection.writeStream \\
           <div>
             <h3 className="text-xl font-bold text-white">Customer 360 — Batch ETL Pipeline</h3>
             <p className="text-sm text-slate-400 mt-1">Build comprehensive customer profiles by integrating data from multiple sources with RFM segmentation.</p>
+            <p className="text-slate-500 text-xs mt-2 italic">In plain English: We pull customer and order data from different places, clean it up, then label each customer (e.g. &quot;Champion&quot; if they buy often and recently, &quot;At Risk&quot; if they haven&apos;t bought in a long time). One big table per customer = Customer 360.</p>
           </div>
         </div>
 
@@ -322,6 +329,7 @@ customer_360.write \\
           <div>
             <h3 className="text-xl font-bold text-white">Real-Time Fraud Detection System</h3>
             <p className="text-sm text-slate-400 mt-1">Detect fraudulent transactions in real-time using rule-based checks and velocity analysis.</p>
+            <p className="text-slate-500 text-xs mt-2 italic">In plain English: When someone pays, we check rules (e.g. is the amount way higher than usual? Is it from a different country? Too many payments in 5 minutes?). We give each payment a &quot;fraud score&quot; and can block, review, or approve it right away.</p>
           </div>
         </div>
 
@@ -429,6 +437,7 @@ q = transactions.writeStream \\
           <div>
             <h3 className="text-xl font-bold text-white">Movie Recommendation Engine</h3>
             <p className="text-sm text-slate-400 mt-1">Build a complete recommendation system using ALS collaborative filtering with hyperparameter tuning.</p>
+            <p className="text-slate-500 text-xs mt-2 italic">In plain English: We use who liked which movies to guess what you might like (&quot;people who liked what you liked also liked this&quot;). We train a model on past ratings, tune it to work better, then suggest top movies for each user.</p>
           </div>
         </div>
 

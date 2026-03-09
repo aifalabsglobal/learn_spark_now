@@ -10,14 +10,18 @@ export default function SparkSQL() {
       </div>
       <h2 className="text-3xl font-bold text-white mb-8 gradient-text">Spark SQL & DataFrames</h2>
 
+      <Callout type="info" title="👋 In Plain English">
+        <strong>Spark SQL</strong> lets you work with data using tables and columns — like a giant spreadsheet that can live on many computers. You can filter rows (&quot;show me only kids older than 10&quot;), add columns, and run SQL queries, all while Spark does the heavy lifting in the background.
+      </Callout>
+
       {/* Creating DataFrames */}
       <div id="dataframes" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Creating DataFrames
         </h3>
-        <Callout type="info" title="What is a DataFrame?">
-          Think of a <span className="font-bold text-white">DataFrame</span> like a super-powered Excel spreadsheet or a SQL table. The key difference is that it can be split into pieces and processed by thousands of computers at the same time!
+        <Callout type="info" title="What is a DataFrame? (Kid-Friendly)">
+          Think of a <span className="font-bold text-white">DataFrame</span> like a super-powered Excel spreadsheet or a table with rows and columns. The cool part: it can be split into pieces and processed by thousands of computers at the same time — like a class project where every row is a student and everyone works on different rows together!
         </Callout>
         <CodeBlock
           title="6 Ways to Create DataFrames"
@@ -74,6 +78,9 @@ df_jdbc = spark.read.format("jdbc") \\
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           DataFrame Operations
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">In simple words:</strong> You can <strong>select</strong> columns (pick which columns to show), <strong>filter</strong> rows (keep only rows that match a rule, like &quot;salary &gt; 70000&quot;), <strong>add</strong> new columns (e.g. a bonus column), and <strong>sort</strong> or <strong>drop</strong> columns. Just like editing a spreadsheet!
+        </p>
         <CodeBlock
           title="Common DataFrame Operations"
           code={`from pyspark.sql.functions import *
@@ -118,6 +125,9 @@ df.na.replace({"Engineering": "Eng"}, subset=["department"])`}
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Aggregations
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">Plain English:</strong> Aggregation means &quot;combine many rows into one summary.&quot; For example: <strong>count</strong> how many people are in each department, <strong>average</strong> their salary, or <strong>sum</strong> total sales. Like asking &quot;How many kids in each class?&quot; or &quot;What&apos;s the total score per team?&quot;
+        </p>
         <CodeBlock
           title="Aggregation Operations"
           code={`# Basic aggregations
@@ -158,6 +168,9 @@ df.groupBy("department") \\
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Window Functions
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">In plain English:</strong> Window functions let you answer questions like &quot;What&apos;s my rank in my class?&quot; or &quot;What&apos;s the average salary in my department?&quot; — without squashing all rows into one. You look at a &quot;window&quot; of rows (e.g. all people in the same department) and compute something for each row.
+        </p>
         <CodeBlock
           title="Window Functions"
           code={`from pyspark.sql.window import Window
@@ -193,6 +206,9 @@ top2_per_dept = df \\
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Joins
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">Kid-friendly:</strong> A <strong>join</strong> is when you combine two tables by matching a column (like student ID). <strong>Inner join</strong> = only keep rows that have a match in both tables. <strong>Left join</strong> = keep everyone from the first table and add info from the second when it matches.
+        </p>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2 mb-4">
           {['inner', 'left', 'right', 'full', 'left_semi', 'left_anti', 'cross'].map((j, i) => (
@@ -278,6 +294,9 @@ spark.sql("""
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           UDFs (User Defined Functions)
         </h3>
+        <p className="text-slate-400 text-sm mb-2">
+          <strong className="text-slate-300">Plain English:</strong> A <strong>UDF</strong> (User Defined Function) is your own rule — like &quot;if salary is high, call it Senior; if medium, call it Mid.&quot; Spark lets you use these on every row. <strong>Pandas UDFs</strong> do the same thing but work on chunks of rows at once, so they&apos;re much faster!
+        </p>
         <Callout type="tip" title="Use Pandas UDFs!">
           When you need custom functions, always prefer <span className="font-bold text-white">Pandas UDFs</span> (vectorized) over standard Python UDFs. They process data in batches instead of row-by-row, making them 10x-100x faster!
         </Callout>

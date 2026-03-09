@@ -1,4 +1,5 @@
 import CodeBlock, { DiagramBlock } from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export function MLlib() {
   return (
@@ -8,6 +9,10 @@ export function MLlib() {
         <div className="h-px flex-1 bg-gradient-to-r from-spark/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-8 gradient-text">MLlib (Machine Learning)</h2>
+
+      <Callout type="info" title="👋 In Plain English">
+        <strong>Machine learning</strong> means teaching the computer to find patterns in data and make predictions — like &quot;is this email spam?&quot; or &quot;what movie might this user like?&quot; <strong>MLlib</strong> is Spark&apos;s toolbox for doing this on huge datasets. A <strong>pipeline</strong> is a recipe: first prepare the data (transformers), then train a model (estimator), then use it to predict!
+      </Callout>
 
       <div id="ml-pipeline" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -24,18 +29,21 @@ Estimator:   Algorithm that fits on data to produce a Model
 Pipeline:    Chain of Transformers and Estimators`}
         </DiagramBlock>
 
+        <p className="text-slate-400 text-sm mt-4 mb-2">
+          <strong className="text-slate-300">Plain English:</strong> A <strong>Transformer</strong> changes your data (e.g. turn words into numbers). An <strong>Estimator</strong> learns from data and gives you a model (like a decision tree or a recommendation model). A <strong>Pipeline</strong> chains them: step 1 transform, step 2 transform, step 3 train model — all in one go!
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6 mb-6">
           <div className="bg-blue-950/20 border border-blue-500/20 rounded-xl p-4">
             <h4 className="text-sm font-bold text-blue-400 mb-1">Transformer</h4>
-            <p className="text-xs text-slate-400">Converts DataFrame to DataFrame. E.g., StringIndexer, VectorAssembler</p>
+            <p className="text-xs text-slate-400">Converts DataFrame to DataFrame. E.g., StringIndexer, VectorAssembler. Like a step that prepares the ingredients.</p>
           </div>
           <div className="bg-green-950/20 border border-green-500/20 rounded-xl p-4">
             <h4 className="text-sm font-bold text-green-400 mb-1">Estimator</h4>
-            <p className="text-xs text-slate-400">Algorithm that fits data to produce a Model. E.g., RandomForest, ALS</p>
+            <p className="text-xs text-slate-400">Algorithm that fits data to produce a Model. E.g., RandomForest, ALS. Like the chef that learns and creates the recipe.</p>
           </div>
           <div className="bg-purple-950/20 border border-purple-500/20 rounded-xl p-4">
             <h4 className="text-sm font-bold text-purple-400 mb-1">Pipeline</h4>
-            <p className="text-xs text-slate-400">Chain of stages (Transformers + Estimators) executed in sequence</p>
+            <p className="text-xs text-slate-400">Chain of stages (Transformers + Estimators) executed in sequence. The full recipe from raw data to predictions!</p>
           </div>
         </div>
       </div>
@@ -45,6 +53,9 @@ Pipeline:    Chain of Transformers and Estimators`}
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Feature Engineering
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">In plain English:</strong> <strong>Feature engineering</strong> means turning your raw data into numbers and shapes the model can use. For example: turn &quot;Engineering&quot; / &quot;Marketing&quot; into 0 and 1, scale numbers so they&apos;re in a similar range, or combine several columns into one &quot;feature vector.&quot; Good features = better predictions!
+        </p>
         <CodeBlock
           title="Feature Engineering Tools"
           code={`from pyspark.ml.feature import *
@@ -128,6 +139,9 @@ print(f"Accuracy: {accuracy:.4f}")`}
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Hyperparameter Tuning
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">Plain English:</strong> <strong>Hyperparameters</strong> are knobs you turn before training (e.g. &quot;how many trees?&quot; or &quot;how deep?&quot;). <strong>Tuning</strong> means trying different combinations and picking the one that works best — like testing different amounts of sugar in a recipe until it tastes just right!
+        </p>
         <CodeBlock
           title="Cross-Validation & Grid Search"
           code={`from pyspark.ml.tuning import ParamGridBuilder, CrossValidator
@@ -171,11 +185,18 @@ export function Performance() {
       </div>
       <h2 className="text-3xl font-bold text-white mb-8 gradient-text">Performance Tuning</h2>
 
+      <Callout type="info" title="👋 In Plain English">
+        <strong>Performance tuning</strong> means making your Spark job run faster and use memory better. You can give each worker more memory, use more workers, turn on &quot;adaptive&quot; features so Spark fixes slow parts by itself, and avoid moving data around too much (e.g. broadcast small tables instead of shuffling). Think of it like organizing a team so everyone has enough space and no one is waiting for someone else!
+      </Callout>
+
       <div id="spark-config" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Configuration Tuning
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">Simple words:</strong> These settings tell Spark how much memory to use per worker, how many workers, how many partitions to use for shuffles, and whether to use smart optimizations (adaptive execution). Bigger data or heavier jobs usually need more memory and more partitions.
+        </p>
         <CodeBlock
           title="Spark Configuration"
           code={`spark = SparkSession.builder \\
@@ -230,6 +251,9 @@ export function Performance() {
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Data Skew Handling (Salting)
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">In plain English:</strong> <strong>Data skew</strong> means one or two keys have way more data than others — so one worker does most of the work and others sit idle. <strong>Salting</strong> is a trick: we add a random number to the key so that big key gets split into many smaller keys and spread across workers. After the join we can combine the pieces back.
+        </p>
         <CodeBlock
           title="Salting Technique for Data Skew"
           code={`from pyspark.sql.functions import rand, concat, lit, col
@@ -257,6 +281,9 @@ result = df_salted.join(lookup_salted, "salted_key", "inner")`}
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Broadcast Join & Explain Plan
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">Kid-friendly:</strong> When one table is small (e.g. a list of country codes), instead of moving huge amounts of data around, we <strong>broadcast</strong> the small table — send one copy to every worker. Then each worker can do the join locally. <strong>Explain plan</strong> shows you how Spark will run your query so you can spot slow parts.
+        </p>
         <CodeBlock
           title="Broadcast Join & Debugging"
           code={`from pyspark.sql.functions import broadcast

@@ -49,7 +49,7 @@ function App() {
     );
   }, []);
 
-  useEffect(() {
+  useEffect(() => {
     const main = mainRef.current;
     if (!main) return;
 
@@ -139,8 +139,11 @@ function App() {
               <span className="text-2xl md:text-4xl font-bold text-slate-400">The Easy Guide</span>
             </h1>
 
-            <p className="text-lg text-slate-400 max-w-2xl mb-10 leading-relaxed">
+            <p className="text-lg text-slate-400 max-w-2xl mb-4 leading-relaxed">
               The easiest way to learn Apache Spark. We use simple analogies and interactive examples to take you from zero to hero, covering everything from fundamentals to 5 real-world projects.
+            </p>
+            <p className="text-sm text-slate-500 max-w-2xl mb-10">
+              Every section includes <strong className="text-slate-400">&quot;In Plain English&quot;</strong> explanations — so even kids can follow along! Look for the 👋 callouts and short &quot;simple words&quot; notes under each topic.
             </p>
 
             {/* Quick Links */}

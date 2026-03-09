@@ -10,6 +10,10 @@ export default function Streaming() {
       </div>
       <h2 className="text-3xl font-bold text-white mb-8 gradient-text">Spark Streaming</h2>
 
+      <Callout type="info" title="👋 In Plain English">
+        <strong>Streaming</strong> means working with data that keeps coming in over time — like live scores in a game, or messages in a chat. Spark lets you run the same kind of queries (count, sum, filter) on this &quot;never-ending&quot; data, and get updated results every few seconds or minutes!
+      </Callout>
+
       {/* Concepts */}
       <div id="streaming-concepts" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -17,8 +21,8 @@ export default function Streaming() {
           Structured Streaming Concepts
         </h3>
 
-        <Callout type="info" title="The Infinite Table">
-          Imagine a table that never ends. New data just keeps getting added to the bottom of the spreadsheet. That is <span className="font-bold text-white">Structured Streaming</span>! It treats a stream of data exactly like a static table, but one that is constantly growing.
+        <Callout type="info" title="The Infinite Table (Kid-Friendly)">
+          Imagine a table that never ends. New data just keeps getting added to the bottom of the spreadsheet — like a scoreboard that updates every time someone scores. That is <span className="font-bold text-white">Structured Streaming</span>! Spark treats this live data like a normal table, but one that keeps growing.
         </Callout>
 
         <DiagramBlock title="Structured Streaming Model">
@@ -43,18 +47,21 @@ export default function Streaming() {
  Console   File     Kafka/DB`}
         </DiagramBlock>
 
+        <p className="text-slate-400 text-sm mt-4 mb-2">
+          <strong className="text-slate-300">Output modes in plain English:</strong> <strong>Append</strong> = only show new rows. <strong>Complete</strong> = show the whole result table each time (like rewriting the whole scoreboard). <strong>Update</strong> = only show rows that changed.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6">
           <div className="bg-green-950/20 border border-green-500/20 rounded-xl p-4">
             <h4 className="text-sm font-bold text-green-400 mb-1">Append Mode</h4>
-            <p className="text-xs text-slate-400">Only new rows added to result table are output</p>
+            <p className="text-xs text-slate-400">Only new rows added to result table are output. Like adding new lines to a list.</p>
           </div>
           <div className="bg-blue-950/20 border border-blue-500/20 rounded-xl p-4">
             <h4 className="text-sm font-bold text-blue-400 mb-1">Complete Mode</h4>
-            <p className="text-xs text-slate-400">Entire result table is output after every trigger</p>
+            <p className="text-xs text-slate-400">Entire result table is output after every trigger. Like printing the whole scoreboard again.</p>
           </div>
           <div className="bg-purple-950/20 border border-purple-500/20 rounded-xl p-4">
             <h4 className="text-sm font-bold text-purple-400 mb-1">Update Mode</h4>
-            <p className="text-xs text-slate-400">Only rows that were updated are output</p>
+            <p className="text-xs text-slate-400">Only rows that were updated are output. Like only showing the scores that changed.</p>
           </div>
         </div>
 
@@ -132,6 +139,9 @@ events = parsed.select(
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Windowed Aggregations
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">In plain English:</strong> With streaming data, we often want to count or sum over &quot;windows&quot; of time — e.g. &quot;how many clicks in the last 5 minutes?&quot; <strong>Tumbling window</strong> = non-overlapping chunks (5 min, then next 5 min). <strong>Sliding window</strong> = overlapping (e.g. every 5 minutes we look at the last 10 minutes).
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="bg-slate-800/40 border border-slate-700/40 rounded-xl p-4">

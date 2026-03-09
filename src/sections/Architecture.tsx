@@ -10,6 +10,10 @@ export default function Architecture() {
       </div>
       <h2 className="text-3xl font-bold text-white mb-8 gradient-text">Core Architecture</h2>
 
+      <Callout type="info" title="👋 In Plain English">
+        Think of Spark like a <strong>team doing a big project</strong>: the <strong>Driver</strong> is the boss who gives instructions, the <strong>Cluster Manager</strong> assigns who does what, and the <strong>Executors</strong> are the workers on different computers doing the actual work. Tasks are the small jobs each worker gets.
+      </Callout>
+
       {/* Architecture Diagram */}
       <div id="arch-diagram" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -45,12 +49,15 @@ export default function Architecture() {
     └──────────────────────────────────────────────────┘`}
         </DiagramBlock>
 
+        <p className="text-slate-400 text-sm mt-4">
+          <strong className="text-slate-300">Simple words:</strong> Driver = the brain that runs your code. Cluster Manager = the person who hands out computers. Executors = the computers doing the work. Tasks = the small chores each computer does.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
           {[
-            { title: 'Driver', desc: 'Runs the main program, creates SparkContext, and coordinates work' },
-            { title: 'Cluster Manager', desc: 'Allocates resources across cluster (YARN, Mesos, K8s)' },
-            { title: 'Executors', desc: 'Run tasks and store data in memory/disk on worker nodes' },
-            { title: 'Tasks', desc: 'Individual units of work sent to executors for processing' },
+            { title: 'Driver', desc: 'Runs the main program, creates SparkContext, and coordinates work. Like the boss!' },
+            { title: 'Cluster Manager', desc: 'Allocates resources across cluster (YARN, Mesos, K8s). Decides which computer does what.' },
+            { title: 'Executors', desc: 'Run tasks and store data in memory/disk on worker nodes. The workers!' },
+            { title: 'Tasks', desc: 'Individual units of work sent to executors. One small job per worker.' },
           ].map((item, i) => (
             <div key={i} className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4">
               <h4 className="text-sm font-bold text-spark-light mb-1">{item.title}</h4>
@@ -66,6 +73,9 @@ export default function Architecture() {
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           RDD (Resilient Distributed Dataset)
         </h3>
+        <Callout type="tip" title="In Plain English: What is an RDD?">
+          An <strong>RDD</strong> is like a <strong>list of stuff split across many computers</strong>. &quot;Resilient&quot; means if one computer fails, Spark can rebuild the list. &quot;Distributed&quot; means the list is spread out so many computers can work on it at once.
+        </Callout>
 
         <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 mb-4">
           {['Immutable', 'Distributed', 'Resilient', 'Lazy', 'Partitioned'].map((prop, i) => (
@@ -105,8 +115,8 @@ print(f"Data in partitions: {rdd1.glom().collect()}")
           Transformations vs Actions
         </h3>
 
-        <Callout type="tip" title="Lazy Evaluation Analogy">
-          Think of <span className="font-bold text-white">Transformations</span> like a waiter taking your order (writing it down but not cooking yet). <span className="font-bold text-white">Actions</span> are when you say "I'm ready to eat," and the kitchen actually starts cooking!
+        <Callout type="tip" title="Lazy Evaluation — In Plain English">
+          Think of <span className="font-bold text-white">Transformations</span> like a waiter taking your order (writing it down but not cooking yet). <span className="font-bold text-white">Actions</span> are when you say &quot;I&apos;m ready to eat,&quot; and the kitchen actually starts cooking! Spark waits until you need a result before it does the work — that way it can plan the fastest way.
         </Callout>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -216,6 +226,9 @@ result = rdd.map(lambda x: x * 2) \\
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Persistence & Caching
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">In plain English:</strong> Caching means &quot;save this data so we don&apos;t have to compute it again.&quot; Like putting your favorite toys in a box by your bed so you don&apos;t have to go to the closet every time. Spark can save in memory (super fast) or on disk (slower but safer).
+        </p>
 
         <InfoTable
           headers={['Storage Level', 'Memory', 'Disk', 'Serialized', 'Replicas']}
@@ -260,15 +273,18 @@ processed.unpersist()`}
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Broadcast Variables & Accumulators
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          <strong className="text-slate-300">Plain English:</strong> <strong>Broadcast</strong> = copy one piece of info (like a cheat sheet) to every worker once, so they don&apos;t keep asking for it. <strong>Accumulator</strong> = a shared counter or total that every worker can add to (e.g. &quot;how many errors did we see?&quot;).
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div className="bg-purple-950/30 border border-purple-500/20 rounded-xl p-5">
             <h4 className="text-sm font-bold text-purple-400 mb-2">Broadcast Variables</h4>
-            <p className="text-xs text-slate-400">Read-only shared variable sent to all workers <em>once</em>. Perfect for large lookup tables.</p>
+            <p className="text-xs text-slate-400">Read-only shared variable sent to all workers <em>once</em>. Perfect for large lookup tables. Like giving every worker the same copy of a rulebook.</p>
           </div>
           <div className="bg-yellow-950/30 border border-yellow-500/20 rounded-xl p-5">
             <h4 className="text-sm font-bold text-yellow-400 mb-2">Accumulators</h4>
-            <p className="text-xs text-slate-400">Write-only shared variables for aggregating info across tasks. Only the driver reads the value.</p>
+            <p className="text-xs text-slate-400">Write-only shared variables for aggregating info across tasks. Only the driver reads the value. Like a shared jar everyone drops coins into.</p>
           </div>
         </div>
 

@@ -10,14 +10,21 @@ export default function Fundamentals() {
       </div>
       <h2 className="text-3xl font-bold text-white mb-8 gradient-text">Fundamentals</h2>
 
+      <Callout type="info" title="👋 In Plain English">
+        Spark is a tool that helps computers work on <strong>huge amounts of information</strong> (like millions of names, numbers, or records) really fast by using many computers at once — like having lots of friends help you sort a giant pile of toys instead of doing it alone!
+      </Callout>
+
       {/* What is Spark */}
       <div id="what-is-spark" className="mb-12">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           What is Apache Spark?
         </h3>
-        <p className="text-slate-300 mb-4 leading-relaxed">
+        <p className="text-slate-300 mb-2 leading-relaxed">
           Apache Spark is a <span className="text-spark-light font-semibold">unified analytics engine</span> for large-scale data processing. It provides high-level APIs in Java, Scala, Python, and R, and an optimized engine that supports general computation graphs.
+        </p>
+        <p className="text-slate-400 text-sm mb-4 italic">
+          In simple words: Spark is like a super-fast team that can read, sort, and count huge piles of data using many computers at the same time. You can talk to it in Python, Java, or other languages.
         </p>
 
         <DiagramBlock title="Traditional MapReduce vs Spark">
@@ -50,6 +57,9 @@ Spark:      Memory → Transform → Memory → Action → Output (100x FASTER)`
           <span className="w-1.5 h-6 bg-spark rounded-full" />
           Why Spark?
         </h3>
+        <p className="text-slate-400 text-sm mb-4">
+          Why do people use Spark? Because it&apos;s <strong className="text-slate-300">faster</strong> (it keeps data in memory instead of writing to disk every step), <strong className="text-slate-300">easier</strong> to use than older tools, and can do real-time streaming and machine learning too!
+        </p>
 
         <InfoTable
           headers={['Feature', 'MapReduce', 'Apache Spark']}
@@ -104,8 +114,11 @@ spark-submit --version`}
         </h3>
 
         <Callout type="info" title="The Captain of the Ship">
-          A <span className="font-bold text-white">SparkSession</span> is like the captain of a ship. It's the entry point that controls everything your application does. You always start by creating one!
+          A <span className="font-bold text-white">SparkSession</span> is like the captain of a ship. It&apos;s the entry point that controls everything your application does. You always start by creating one!
         </Callout>
+        <p className="text-slate-400 text-sm mb-4">
+          In the code below: we (1) say &quot;Start Spark!&quot;, (2) make a small table with names and ages, (3) show it on the screen. That&apos;s your first Spark program!
+        </p>
 
         <CodeBlock
           title="hello_spark.py"
