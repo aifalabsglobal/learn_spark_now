@@ -1,4 +1,5 @@
 import { Trophy, Star, Zap, Target, CheckCircle2, Circle, Award, Flame } from 'lucide-react';
+import Callout from '../components/Callout';
 
 type Level = 'beginner' | 'intermediate' | 'advanced' | 'champion';
 type Badge = 'first_spark' | 'sql_master' | 'streamer' | 'ml_ninja' | 'perf_guru' | 'project_builder' | 'full_stack';
@@ -66,8 +67,11 @@ export default function Assignments() {
         <div className="h-px flex-1 bg-gradient-to-r from-spark/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-4 gradient-text">Assignments (Gamified)</h2>
+      <Callout type="info" title="In Plain English">
+        Complete assignments to earn <strong>points</strong> and unlock <strong>badges</strong>. Each task has a checklist; finish the items to claim the points. Levels: Beginner → Intermediate → Advanced → Champion. Total possible: <strong className="text-spark-light">1,000+ pts</strong>.
+      </Callout>
       <p className="text-slate-400 text-sm mb-8 max-w-2xl">
-        Complete assignments to earn <strong className="text-slate-300">points</strong> and unlock <strong className="text-amber-400">badges</strong>. Track your progress with the checklist for each task. Levels: Beginner → Intermediate → Advanced → Champion. Total possible: <strong className="text-spark-light">1,000+ pts</strong>.
+        Track your progress with the checklist for each task. Submit screenshots or code as required; use the course Fundamentals through Projects sections as reference.
       </p>
 
       {/* Scoreboard placeholder */}

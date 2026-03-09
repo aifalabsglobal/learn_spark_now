@@ -1,4 +1,5 @@
 import CodeBlock, { InfoTable } from '../components/CodeBlock';
+import Callout from '../components/Callout';
 
 export default function Cheatsheet() {
   return (
@@ -8,7 +9,10 @@ export default function Cheatsheet() {
         <div className="h-px flex-1 bg-gradient-to-r from-spark/30 to-transparent" />
       </div>
       <h2 className="text-3xl font-bold text-white mb-2 gradient-text">Cheatsheet</h2>
-      <p className="text-slate-400 text-sm mb-8">Quick copy-paste reference for PySpark (Windows paths).</p>
+      <Callout type="info" title="Quick reference">
+        Copy-paste snippets for SparkSession, read/write, DataFrame ops, RDD, streaming, and ML. Paths use Windows-style <code>C:/</code>; adjust for your environment.
+      </Callout>
+      <p className="text-slate-400 text-sm mb-8">Use this page while coding; see the full sections for detailed explanations.</p>
 
       {/* Session */}
       <div className="mb-10">
@@ -21,6 +25,7 @@ export default function Cheatsheet() {
           code={`from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName("MyApp").master("local[*]").getOrCreate()
 # RDD: sc = spark.sparkContext`}
+          language="python"
         />
       </div>
 
@@ -103,6 +108,7 @@ df2 = df.withWatermark("ts", "10 min").groupBy(window(col("ts"), "5 min")).count
 q = df2.writeStream.outputMode("update").format("console")\\
   .option("checkpointLocation","C:/spark_data/ck").start()
 q.awaitTermination()`}
+          language="python"
         />
         <InfoTable
           headers={['Output mode', 'Use when']}
