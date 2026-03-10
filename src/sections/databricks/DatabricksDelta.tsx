@@ -1,5 +1,6 @@
 import CodeBlock, { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksDelta() {
   return (
@@ -66,6 +67,11 @@ DeltaTable.forName(spark, "catalog.schema.my_table") \\
 ├── part-00001.parquet
 └── ... (after OPTIMIZE: fewer, larger files)`}
       </DiagramBlock>
+      <EnhancementBox title="Delta Lake — enhancements" items={[
+        'Create a Delta table (df.write.format("delta").save(...) or CREATE TABLE), then run OPTIMIZE and VACUUM.',
+        'Use time travel: SELECT * FROM table VERSION AS OF 0 or TIMESTAMP AS OF "timestamp".',
+        'Try Z-ORDER BY on a frequently filtered column and compare query time before/after.',
+      ]} />
     </section>
   );
 }

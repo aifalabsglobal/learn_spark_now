@@ -16,8 +16,15 @@ createRoot(document.getElementById("root")!).render(
         publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
         afterSignOutUrl={window.location.origin + window.location.pathname}
         appearance={{
-          baseTheme: undefined,
-          variables: { colorBackground: '#0f172a', colorInputBackground: '#1e293b', colorInputText: '#f1f5f9', colorText: '#e2e8f0', colorTextSecondary: '#94a3b8', borderRadius: '0.5rem' },
+          variables: {
+            colorBackground: '#ffffff',
+            colorInputBackground: '#f8fafc',
+            colorInputText: '#0f172a',
+            colorText: '#0f172a',
+            colorTextSecondary: '#64748b',
+            colorPrimary: '#e8590c',
+            borderRadius: '0.5rem',
+          },
         }}
       >
         <App />

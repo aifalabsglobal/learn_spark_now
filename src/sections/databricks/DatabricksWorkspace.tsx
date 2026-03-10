@@ -1,5 +1,6 @@
 import CodeBlock, { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksWorkspace() {
   return (
@@ -73,6 +74,11 @@ Notebook (output)`}
         <p className="text-slate-400 text-sm mb-4">
           Connect a Git repo (GitHub, GitLab, Azure Repos, etc.) to the workspace so notebooks and scripts are synced with your repo. <strong className="text-slate-300">Repos</strong> lets you clone, create branches, commit, and push from the Databricks UI. Jobs can reference a repo and branch so that production runs use versioned code; this is the basis for CI/CD with Databricks.
         </p>
+        <EnhancementBox title="Workspace — enhancements" items={[
+          'Create a cluster (single node for learning), attach a notebook, and run spark.range(10).show().',
+          'Clone a repo into Repos, open a notebook from the repo, and run a few cells.',
+          'Use %pip install in a notebook to add a library; restart the cluster if needed and re-run.',
+        ]} />
       </div>
     </section>
   );

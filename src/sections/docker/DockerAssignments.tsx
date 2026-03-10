@@ -1,4 +1,5 @@
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DockerAssignments() {
   const labs = [
@@ -33,6 +34,11 @@ export default function DockerAssignments() {
             </div>
           </div>
         ))}
+        <EnhancementBox title="Assignments — next steps" items={[
+          'Complete at least two lab assignments and document your docker-compose or Dockerfile.',
+          'Share your solution (e.g. Dockerfile + compose) in a repo and add a short README.',
+          'Try running the same stack on another machine (or a cloud VM) to verify portability.',
+        ]} />
       </div>
     </section>
   );

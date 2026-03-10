@@ -1,5 +1,6 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function KafkaProduction() {
   return (
@@ -42,6 +43,11 @@ Real-time analytics · Data lake · Warehouse · ML`}
           <h4 className="text-sm font-bold text-kafka-light mb-2">FAANG-style roles</h4>
           <p className="text-xs text-slate-400">This course targets <strong className="text-slate-300">Streaming Data Engineer</strong>, <strong className="text-slate-300">Platform Engineer</strong>, and <strong className="text-slate-300">Distributed Systems</strong> interviews where Kafka is commonly discussed.</p>
         </div>
+        <EnhancementBox title="Production — enhancements" items={[
+          'Design a topic strategy for a multi-tenant SaaS (one topic per tenant vs shared with key).',
+          'List monitoring metrics: lag, throughput, broker disk; try Kafka JMX or Prometheus exporter.',
+          'Read about Kafka vs Flink/Spark Streaming for stateful processing and exactly-once.',
+        ]} />
       </div>
     </section>
   );

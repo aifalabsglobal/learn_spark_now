@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksSQL() {
   return (
@@ -48,6 +49,11 @@ GROUP BY 1
 ORDER BY 1`}
           language="sql"
         />
+        <EnhancementBox title="Databricks SQL — enhancements" items={[
+          'Create a SQL warehouse and run a query against a Delta table (or create a small table first).',
+          'Build a simple dashboard with a few visualizations and a filter; share the link.',
+          'Use the query history to find a slow query and check the execution plan.',
+        ]} />
       </div>
     </section>
   );

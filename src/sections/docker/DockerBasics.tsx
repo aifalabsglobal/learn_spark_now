@@ -1,6 +1,7 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DockerBasics() {
   return (
@@ -85,6 +86,11 @@ CMD ["python", "app.py"]`}
             </tbody>
           </table>
         </div>
+        <EnhancementBox title="Docker basics — enhancements" items={[
+          'Write a minimal Dockerfile (FROM alpine, CMD echo hello) and build and run it.',
+          'Run nginx with -p 8080:80 and open localhost:8080 in a browser; then docker stop and docker rm.',
+          'Use docker images and docker rmi to remove an unused image; try docker system prune -a (careful).',
+        ]} />
       </div>
     </section>
   );

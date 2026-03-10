@@ -1,5 +1,6 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DockerFundamentals() {
   return (
@@ -27,8 +28,8 @@ export default function DockerFundamentals() {
           Without containers, teams often face environment drift (dev vs staging vs prod), dependency conflicts when multiple apps share a server, and slow onboarding as new developers install and configure tools by hand. Docker addresses these by packaging the app and its runtime into a single, reproducible unit — the image — that runs identically anywhere.
         </p>
         <div className="bg-slate-800/40 border border-slate-700/40 rounded-lg p-4 mb-4">
-          <h4 className="text-sm font-bold text-docker-light mb-2">Without containers (problems)</h4>
-          <ul className="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+          <h4 className="text-sm font-bold text-docker-light mb-2">Step-by-step: Why Docker exists</h4>
+          <ul className="text-xs text-slate-400 space-y-1.5 list-decimal list-inside">
             <li><strong className="text-slate-300">Environment drift</strong> — &quot;Works on my machine&quot; because dev and prod have different OS versions, libraries, or config. Debugging becomes a game of guessing differences.</li>
             <li><strong className="text-slate-300">Dependency conflicts</strong> — Different apps need different library versions on the same server. Installing one can break another.</li>
             <li><strong className="text-slate-300">Slow onboarding</strong> — New developers spend hours (or days) installing runtimes, databases, and tools. With Docker, one <code className="text-slate-300">docker compose up</code> can bring the whole stack up.</li>
@@ -90,6 +91,11 @@ Containers: App → Container runtime (Docker) → Host OS → Hardware
           <li><strong className="text-slate-300">Local development (matching production)</strong> — Developers run the same stack (app, DB, cache) via Docker Compose. No “works on my machine” — everyone runs the same containers.</li>
           <li><strong className="text-slate-300">Legacy app isolation on a shared server</strong> — Run an old app in a container with its specific runtime and dependencies, without affecting other apps on the same host.</li>
         </ul>
+        <EnhancementBox title="Docker fundamentals — enhancements" items={[
+          'Install Docker Desktop (Windows/Mac) or Docker Engine (Linux) and run docker --version.',
+          'Run your first container: docker run hello-world. Then run docker ps -a to see it.',
+          'Pull the official Postgres image: docker pull postgres:16 and read the image description on Docker Hub.',
+        ]} />
       </div>
     </section>
   );

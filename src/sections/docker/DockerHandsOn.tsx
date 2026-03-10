@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DockerHandsOn() {
   return (
@@ -77,6 +78,11 @@ docker exec -it <id> sh  # Shell into running container
 docker system df        # Disk usage`}
           language="bash"
         />
+        <EnhancementBox title="Hands-on — enhancements" items={[
+          'Install Docker (Desktop or Engine), run docker run hello-world and docker ps -a.',
+          'Build the sample Dockerfile in the section; run the container and verify the output.',
+          'Use docker exec -it <container> sh to shell into a running container and list files.',
+        ]} />
       </div>
     </section>
   );

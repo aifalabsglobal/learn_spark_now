@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PythonOOP() {
   return (
@@ -50,6 +51,11 @@ p.greet()  # "Hi, I'm Alice"`}
         return f"Student {self.student_id}: {super().greet()}"`}
           language="python"
         />
+        <EnhancementBox title="OOP — enhancements" items={[
+          'Add a method to Person that returns age in dog years (age * 7); override it in Student.',
+          'Create a simple class hierarchy: Vehicle → Car, Bike; use super() in __init__.',
+          'Use isinstance() and type() on your instances; try adding a class attribute and access it from an instance.',
+        ]} />
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksFundamentals() {
   return (
@@ -85,6 +86,11 @@ export default function DatabricksFundamentals() {
             <li>Create a notebook, attach the cluster, and run <code className="text-slate-300">spark.range(10).show()</code> to confirm Spark is available</li>
           </ul>
         </div>
+        <EnhancementBox title="Databricks fundamentals — enhancements" items={[
+          'Sign up at databricks.com (community or trial), create a workspace, and note the URL.',
+          'Create a cluster and a notebook; run spark.range(10).show() and df = spark.read.csv(...) with a sample file.',
+          'Compare the notebook experience to local PySpark: same APIs, but no install — everything runs in the cloud.',
+        ]} />
       </div>
     </section>
   );

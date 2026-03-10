@@ -1,6 +1,7 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
 import { DiagramBlock } from '../../components/CodeBlock';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function GitBranching() {
   return (
@@ -70,6 +71,11 @@ git merge feature/login    # merge feature into main
 git branch -d feature/login  # delete branch after merge`}
           language="bash"
         />
+        <EnhancementBox title="Branching — enhancements" items={[
+          'Create a branch feature/add-readme, add a line to README, commit, then merge into main and delete the branch.',
+          'Use git log --oneline --graph to visualize branches and merges.',
+          'Create two branches from main, make different commits on each, then merge one into the other and observe the result.',
+        ]} />
       </div>
     </section>
   );

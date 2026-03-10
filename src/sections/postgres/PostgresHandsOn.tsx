@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PostgresHandsOn() {
   return (
@@ -68,6 +69,11 @@ SELECT * FROM products;`}
           <li>Add a <code className="text-slate-300">category</code> column with <code className="text-slate-300">ALTER TABLE products ADD COLUMN category VARCHAR(50);</code> then <code className="text-slate-300">UPDATE products SET category = 'Electronics' WHERE id = 1;</code> (or similar).</li>
           <li>Write a query using <code className="text-slate-300">GROUP BY category</code> with <code className="text-slate-300">COUNT(*)</code> and <code className="text-slate-300">AVG(price)</code> to summarize by category.</li>
         </ul>
+        <EnhancementBox title="Hands-on — enhancements" items={[
+          'Load the sample DB (e.g. pagila or your own), run \\dt and describe two tables.',
+          'Write a JOIN between two tables and a query with HAVING; time a query with EXPLAIN ANALYZE.',
+          'Export query results to CSV with \\copy or your client; re-import into a new table.',
+        ]} />
       </div>
     </section>
   );

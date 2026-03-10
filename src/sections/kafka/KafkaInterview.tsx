@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
+import EnhancementBox from '../../components/EnhancementBox';
 
 const SECTIONS = [
   { title: 'Kafka Fundamentals (20)', ids: Array.from({ length: 20 }, (_, i) => i + 1) },
@@ -150,6 +151,11 @@ export default function KafkaInterview() {
             )}
           </div>
         ))}
+        <EnhancementBox title="Interview prep — enhancements" items={[
+          'Practice explaining Kafka architecture (broker, topic, partition, consumer group) in 2 minutes.',
+          'Prepare an example of exactly-once semantics and idempotent producers.',
+          'Review the 100 questions; group them by theme (architecture, scaling, failure, semantics).',
+        ]} />
       </div>
     </section>
   );

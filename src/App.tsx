@@ -3,7 +3,7 @@ import {
   Zap, BookOpen, ArrowUp, Flame, Cpu, Database, Radio,
   Brain, Gauge, FolderKanban, ChevronRight, ChevronDown, Layers
 } from 'lucide-react';
-import { SignInButton, SignUpButton, UserButton, Show } from '@clerk/react';
+import { SignInButton, SignUpButton, UserButton, Show, SignedIn, SignedOut, SignIn } from '@clerk/react';
 import { logger } from './utils/logger';
 import { APP, LEGAL, SUPPORT } from './config/app';
 import Sidebar, { type Course } from './components/Sidebar';
@@ -283,6 +283,28 @@ function App() {
   ];
 
   return (
+    <>
+      <SignedOut>
+        <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 p-4">
+          <p className="text-slate-400 text-sm mb-6 text-center max-w-md">
+            Sign in or create an account to access the course platform.
+          </p>
+          <SignIn
+            appearance={{
+              variables: {
+                colorBackground: '#ffffff',
+                colorInputBackground: '#f8fafc',
+                colorInputText: '#0f172a',
+                colorText: '#0f172a',
+                colorTextSecondary: '#64748b',
+                colorPrimary: '#e8590c',
+                borderRadius: '0.5rem',
+              },
+            }}
+          />
+        </div>
+      </SignedOut>
+      <SignedIn>
     <div className="h-screen flex bg-slate-950 text-slate-200 overflow-hidden">
       {/* Skip to main content — enterprise a11y */}
       <a href="#main-content" className="skip-link">
@@ -804,6 +826,8 @@ function App() {
         </button>
       )}
     </div>
+      </SignedIn>
+    </>
   );
 }
 

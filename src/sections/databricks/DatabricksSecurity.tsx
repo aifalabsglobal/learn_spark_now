@@ -1,4 +1,5 @@
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksSecurity() {
   return (
@@ -29,6 +30,11 @@ export default function DatabricksSecurity() {
             <li>Audit logs for who accessed what</li>
           </ul>
         </div>
+        <EnhancementBox title="Security — enhancements" items={[
+          'Create a catalog and schema in Unity Catalog; create a table and grant SELECT to a principal.',
+          'Review audit logs (if available in your workspace) for table access and query history.',
+          'Read the Unity Catalog docs: three-level namespace, data lineage, and table ACLs.',
+        ]} />
       </div>
     </section>
   );

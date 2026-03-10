@@ -1,5 +1,6 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function KafkaArchitecture() {
   return (
@@ -68,6 +69,11 @@ export default function KafkaArchitecture() {
           <li><strong className="text-slate-300">Consumer groups</strong> — One group per logical consumer application; each group gets a copy of the stream.</li>
           <li><strong className="text-slate-300">Replication factor</strong> — At least 2 for durability; 3 is common in production so one broker can fail without losing availability.</li>
         </ul>
+        <EnhancementBox title="Architecture — enhancements" items={[
+          'Create a topic with 3 partitions and replication factor 1 (or 2 if multi-broker); describe it with kafka-topics.sh.',
+          'Produce 10 messages with keys and without; observe how keys map to partitions (same key → same partition).',
+          'Run two consumers in the same group and verify each partition is assigned to one consumer.',
+        ]} />
       </div>
     </section>
   );

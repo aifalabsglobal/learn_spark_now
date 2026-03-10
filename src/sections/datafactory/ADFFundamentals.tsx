@@ -1,5 +1,6 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function ADFFundamentals() {
   return (
@@ -76,6 +77,11 @@ ELT: Extract → Load → Transform
         <p className="text-slate-400 text-sm mb-4">
           ADF is organized around four capabilities: <strong className="text-slate-300">Connect and collect</strong> (ingest from disparate sources using linked services and datasets), <strong className="text-slate-300">Transform and enrich</strong> (mapping data flows, or external compute like Azure Databricks and HDInsight), <strong className="text-slate-300">CI/CD and publish</strong> (integrate with Azure DevOps and GitHub for versioned pipeline deployment), and <strong className="text-slate-300">Monitor</strong> (Azure Monitor, health panels, and run history). In the next sections we’ll cover pipelines, activities, and the Copy activity in detail.
         </p>
+        <EnhancementBox title="ADF fundamentals — enhancements" items={[
+          'Create a free Azure account and open the Azure Portal. Find Azure Data Factory in the marketplace.',
+          'Read the Microsoft Learn module "Introduction to Azure Data Factory" and note the four key capabilities.',
+          'Identify one ETL and one ELT scenario in your work or a sample project; sketch source → transform → destination.',
+        ]} />
       </div>
     </section>
   );

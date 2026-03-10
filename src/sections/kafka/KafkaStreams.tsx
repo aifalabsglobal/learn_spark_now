@@ -1,5 +1,6 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function KafkaStreams() {
   return (
@@ -33,6 +34,11 @@ order_metrics topic`}
       <p className="text-slate-500 text-xs">
         Kafka Streams is a lightweight library for building stream processing applications that read from and write to Kafka. It integrates with the Kafka ecosystem (Flink, Spark) for more complex pipelines.
       </p>
+      <EnhancementBox title="Kafka Streams — enhancements" items={[
+        'Build a simple Streams app: read from a topic, filter or map, write to another topic.',
+        'Use KStream-KTable join or groupBy and count; run with a local Kafka and verify output.',
+        'Explore exactly-once semantics (processing.guarantee=exactly_once_v2) and state stores.',
+      ]} />
     </section>
   );
 }

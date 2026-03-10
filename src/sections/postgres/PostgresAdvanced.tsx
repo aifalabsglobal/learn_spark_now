@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PostgresAdvanced() {
   return (
@@ -80,6 +81,11 @@ JOIN users u ON u.id = tc.user_id;`}
 FROM orders;`}
           language="bash"
         />
+        <EnhancementBox title="Advanced SQL — enhancements" items={[
+          'Wrap two UPDATEs in BEGIN; ... COMMIT; and try ROLLBACK after the first if the second would fail.',
+          'Write a CTE that computes a running total; then use ROW_NUMBER() to rank rows per partition.',
+          'Use a window function to get "previous row" value with LAG() or "next row" with LEAD().',
+        ]} />
       </div>
     </section>
   );

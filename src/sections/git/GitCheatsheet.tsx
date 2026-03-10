@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function GitCheatsheet() {
   return (
@@ -50,6 +51,11 @@ git checkout -- <file>
 # or: git restore <file>`}
         language="bash"
       />
+      <EnhancementBox title="Cheatsheet — practice" items={[
+        'Run each daily command in order: status, add, commit, pull, push (on a real or practice repo).',
+        'Create a branch, make a commit, push with -u, then open a PR from the GitHub UI.',
+        'Use git log --oneline -5 and git diff HEAD~1 to inspect recent history.',
+      ]} />
     </section>
   );
 }

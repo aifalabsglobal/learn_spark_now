@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function GitRemote() {
   return (
@@ -54,6 +55,11 @@ git push -u origin main`}
             <li><code className="text-slate-300">git fetch origin</code> — Download remote branches and commits; update <code>origin/main</code> etc. No merge; you merge or rebase manually.</li>
           </ul>
         </div>
+        <EnhancementBox title="Remote — enhancements" items={[
+          'Create a repo on GitHub, add origin, push main. Then clone the repo elsewhere and push a new branch.',
+          'Run git fetch origin then git log origin/main to see remote commits without merging.',
+          'Set upstream with git push -u origin main once; afterward use just git push and git pull.',
+        ]} />
       </div>
     </section>
   );

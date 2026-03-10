@@ -1,5 +1,6 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function KafkaFundamentals() {
   return (
@@ -99,6 +100,11 @@ timestamp`}
           <li><strong className="text-slate-300">Stock trading systems</strong> — Trades and quotes as events; risk, reporting, and market data consumers need low-latency, ordered streams.</li>
           <li><strong className="text-slate-300">IoT monitoring</strong> — Sensor readings as events; alerting, dashboards, and batch storage consume from the same topics.</li>
         </ul>
+        <EnhancementBox title="Kafka fundamentals — enhancements" items={[
+          'Sketch an event schema for order_created (fields, types, key) and explain why order_id as key helps ordering.',
+          'Draw a simple diagram: one producer → one topic → two consumers (e.g. analytics and notifications).',
+          'Read the Apache Kafka introduction on kafka.apache.org and note the three main APIs (Producer, Consumer, Streams).',
+        ]} />
       </div>
     </section>
   );

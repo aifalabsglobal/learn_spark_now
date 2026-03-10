@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksML() {
   return (
@@ -50,6 +51,11 @@ with mlflow.start_run():
         <p className="text-slate-400 text-sm mb-4">
           From the ML menu, create an AutoML experiment: point to a Delta table and target column. Databricks trains multiple models (classification/regression), ranks them, and generates a notebook with the best pipeline. Good for baselines and feature exploration.
         </p>
+        <EnhancementBox title="ML & MLflow — enhancements" items={[
+          'Log a training run with mlflow.log_param, mlflow.log_metric, mlflow.sklearn.log_model; view in the MLflow UI.',
+          'Run an AutoML experiment on a small dataset and compare the top 3 models.',
+          'Register a model in the Model Registry and transition it to Staging; load it in another notebook.',
+        ]} />
       </div>
     </section>
   );

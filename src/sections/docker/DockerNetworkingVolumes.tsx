@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DockerNetworkingVolumes() {
   return (
@@ -53,6 +54,11 @@ export default function DockerNetworkingVolumes() {
           <pre className="text-xs text-slate-400 font-mono">docker run -v $(pwd)/src:/app/src my-app</pre>
           <p className="text-xs text-slate-500 mt-1">Host directory mounted into container; live code reload.</p>
         </div>
+        <EnhancementBox title="Networking & volumes — enhancements" items={[
+          'Create a named volume and run a container that writes a file into it; remove the container and run another that reads the file.',
+          'Use a bind mount to mount your code into a dev container; change a file on the host and see it in the container.',
+          'Run two containers on the same custom network and ping one from the other by service name.',
+        ]} />
       </div>
     </section>
   );

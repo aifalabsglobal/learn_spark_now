@@ -1,5 +1,6 @@
 import { ExternalLink } from 'lucide-react';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 const LEARN_LINKS = [
   { title: 'Introduction to Azure Data Factory', url: 'https://learn.microsoft.com/en-us/azure/data-factory/introduction' },
@@ -44,6 +45,11 @@ export default function ADFResources() {
           </li>
         ))}
       </ul>
+      <EnhancementBox title="Resources — next steps" items={[
+        'Complete at least one Microsoft Learn module and note the key concepts (pipelines, Copy, IR).',
+        'Follow the "Copy data from Blob to SQL" tutorial end-to-end in the Azure portal.',
+        'Bookmark the ADF connector list and identify connectors for your current or target data sources.',
+      ]} />
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PythonControlFlow() {
   return (
@@ -75,6 +76,11 @@ evens = [x for x in range(10) if x % 2 == 0]
 d = {k: k * 2 for k in ["a", "b", "c"]}`}
           language="python"
         />
+        <EnhancementBox title="Control flow — enhancements" items={[
+          'Write a small script: if/elif/else for grade (A/B/C/F) from a score; then loop over a list of scores and print each grade.',
+          'Use a list comprehension to build [1, 4, 9, 16, 25] and a dict comprehension to map names to lengths.',
+          'Combine for and if: print only even numbers from range(20) using a loop, then do the same with a comprehension.',
+        ]} />
       </div>
     </section>
   );

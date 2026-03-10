@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DockerCompose() {
   return (
@@ -72,6 +73,11 @@ volumes:
         <p className="text-slate-400 text-sm mb-4">
           Create a <code className="text-slate-300">docker-compose.yml</code> with: a <strong className="text-slate-300">web</strong> app (e.g. Node or Python), a <strong className="text-slate-300">database</strong> (PostgreSQL or MySQL), and a <strong className="text-slate-300">cache</strong> (Redis). Use <code>depends_on</code> and a custom network. Run and verify all three services.
         </p>
+        <EnhancementBox title="Compose — enhancements" items={[
+          'Create a docker-compose.yml with two services (e.g. app + postgres); run docker compose up -d.',
+          'Use docker compose logs -f and docker compose down; add a volume for postgres data and restart.',
+          'Run docker compose config to validate the file; try scaling a service with --scale web=2.',
+        ]} />
       </div>
     </section>
   );

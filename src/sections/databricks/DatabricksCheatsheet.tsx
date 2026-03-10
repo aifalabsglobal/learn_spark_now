@@ -1,5 +1,6 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksCheatsheet() {
   return (
@@ -67,6 +68,11 @@ with mlflow.start_run():
           </div>
         </div>
       </div>
+      <EnhancementBox title="Cheatsheet — practice" items={[
+        'Run one command from each section (Spark, Delta, SQL, MLflow) in a notebook.',
+        'Create a small Delta table, run OPTIMIZE and DESCRIBE HISTORY.',
+        'Bookmark the Databricks docs and look up one API (e.g. spark.sql, dbutils).',
+      ]} />
     </section>
   );
 }
