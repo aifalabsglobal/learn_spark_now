@@ -1,5 +1,4 @@
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function ADFCopyActivity() {
   return (
@@ -51,12 +50,7 @@ export default function ADFCopyActivity() {
         <p className="text-slate-400 text-sm mb-4">
           To use Copy you: (1) create a <strong className="text-slate-300">pipeline</strong> and add a Copy activity, (2) create <strong className="text-slate-300">datasets</strong> for source and sink (pointing to the actual store path or table and format), (3) create <strong className="text-slate-300">linked services</strong> for both stores (connection details and authentication). In the Copy activity you select the source and sink datasets, choose the integration runtime, and optionally set column mapping, fault tolerance, and performance settings. You can author pipelines in the Azure portal (Copy Data tool or Data Factory UI), or via ARM templates, REST API, PowerShell, or the Azure Data Factory SDK (e.g. Python, .NET).
         </p>
-        <EnhancementBox title="Copy activity — enhancements" items={[
-          'In Azure Portal, create a practice pipeline with one Copy activity (e.g. Blob → Blob or sample data).',
-          'Try the Copy Data tool wizard and note how it creates linked services, datasets, and the pipeline for you.',
-          'Read the "Supported data stores and formats" doc for Copy activity and list three source/sink pairs you might use.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

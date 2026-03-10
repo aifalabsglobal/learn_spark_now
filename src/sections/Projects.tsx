@@ -1,6 +1,5 @@
 import CodeBlock, { DiagramBlock } from '../components/CodeBlock';
 import Callout from '../components/Callout';
-import EnhancementBox from '../components/EnhancementBox';
 
 export default function Projects() {
   return (
@@ -14,15 +13,7 @@ export default function Projects() {
       <Callout type="info" title="👋 In Plain English">
         These are <strong>real-world examples</strong> that put everything together: tracking clicks on a website in real time, watching for errors in server logs, building a &quot;customer profile&quot; from lots of data, catching bad transactions (fraud), and recommending movies. Each project uses Spark in a different way so you can see how it works in practice!
       </Callout>
-      <EnhancementBox title="Projects — possible enhancements" items={[
-        'E-Commerce: Add a sink to write metrics to a database or dashboard API; add more funnel steps.',
-        'Logs: Add P50/P95/P99 latency per endpoint using approx_count_distinct or percentiles.',
-        'Customer 360: Add data quality checks (nulls, duplicates) and a simple dashboard export (e.g. CSV per segment).',
-        'Fraud: Add a simple ML model (e.g. binary classifier) alongside rules and compare precision/recall.',
-        'Recommendations: Combine ALS with content-based features (genre vectors) in a hybrid scoring function.',
-      ]} />
-
-      {/* Project 1 */}
+{/* Project 1 */}
       <div id="project-1" className="mb-16">
         <div className="flex items-start gap-4 mb-6">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white font-bold text-lg shrink-0">1</div>

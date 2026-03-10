@@ -1,7 +1,6 @@
 import CodeBlock from '../components/CodeBlock';
 import Callout from '../components/Callout';
 import InfographicCard from '../components/InfographicCard';
-import EnhancementBox from '../components/EnhancementBox';
 
 export default function SparkSQL() {
   return (
@@ -453,12 +452,7 @@ df.write \\
     .sortBy("salary") \\
     .saveAsTable("bucketed_employees")`}
         />
-        <EnhancementBox title="Spark SQL & DataFrames — enhancements" items={[
-          'Create a Parquet file with partitionBy("year","month") and query with predicate pushdown (filter on year/month).',
-          'Implement a Pandas UDF that returns a new column (e.g. category from score) and compare performance to a Python UDF.',
-          'Run the same query as DataFrame API and as spark.sql(); use explain("formatted") and compare plans.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

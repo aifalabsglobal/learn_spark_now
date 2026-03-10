@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksProjects() {
   return (
@@ -61,12 +60,7 @@ daily.write.format("delta").mode("overwrite").saveAsTable("catalog.schema.daily_
         <p className="text-slate-400 text-sm mb-4">
           Train a simple classifier (e.g. sklearn or Spark MLlib) on a Delta table, log parameters and metrics with MLflow, and register the best model. Open the experiment in the UI and compare runs.
         </p>
-        <EnhancementBox title="Projects — enhancements" items={[
-          'Complete the ingest project: read from a source, write to Delta, add OPTIMIZE and a simple query.',
-          'Build the aggregation project with window functions or groupBy; persist to Delta.',
-          'Run the MLflow project: train, log, register; then load the model and run a batch prediction.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

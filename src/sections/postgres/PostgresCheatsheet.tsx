@@ -1,5 +1,4 @@
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PostgresCheatsheet() {
   return (
@@ -68,11 +67,6 @@ export default function PostgresCheatsheet() {
       <p className="text-slate-500 text-xs">
         For full syntax, see <a href="https://www.postgresql.org/docs/current/sql-commands.html" className="text-postgres-light hover:underline">PostgreSQL SQL command reference</a>.
       </p>
-      <EnhancementBox title="Cheatsheet — practice" items={[
-        'Run one command from each group (DDL, DML, queries) against a practice database.',
-        'Use a transaction: BEGIN; then two statements; COMMIT or ROLLBACK.',
-        'Bookmark the PostgreSQL docs and look up one function (e.g. date_trunc, string_agg).',
-      ]} />
-    </section>
+</section>
   );
 }

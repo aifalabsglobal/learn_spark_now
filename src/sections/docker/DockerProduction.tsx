@@ -1,5 +1,4 @@
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DockerProduction() {
   return (
@@ -39,12 +38,7 @@ export default function DockerProduction() {
         <p className="text-slate-400 text-sm mb-4">
           For production at scale, you typically run containers on <strong className="text-slate-300">Kubernetes</strong>, <strong className="text-slate-300">ECS</strong>, or <strong className="text-slate-300">Swarm</strong>. They handle scheduling, scaling, rolling updates, and self-healing. Docker and Compose are the foundation; orchestration is the next step.
         </p>
-        <EnhancementBox title="Production — enhancements" items={[
-          'Read the Dockerfile best practices doc: multi-stage builds, minimal base images, non-root user.',
-          'Tag an image with a version (e.g. myapp:1.0) and push to a registry (Docker Hub or cloud).',
-          'Sketch a simple Kubernetes deployment (pod with one container) or try minikube / kind locally.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

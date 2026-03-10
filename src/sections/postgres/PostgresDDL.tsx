@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PostgresDDL() {
   return (
@@ -87,12 +86,7 @@ ALTER TABLE users ADD CONSTRAINT chk_email_format
   CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z]{2,}$');`}
           language="bash"
         />
-        <EnhancementBox title="DDL — enhancements" items={[
-          'Create a table with PRIMARY KEY, UNIQUE, NOT NULL, and a CHECK constraint; insert valid and invalid rows.',
-          'Add an index on a frequently filtered column; run EXPLAIN ANALYZE on a query before and after.',
-          'Use ALTER TABLE to add a column, then add a default; practice DROP and recreate a table.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

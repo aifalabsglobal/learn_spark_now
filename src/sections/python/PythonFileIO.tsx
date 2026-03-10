@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PythonFileIO() {
   return (
@@ -55,12 +54,7 @@ finally:
     print("Cleanup")`}
           language="python"
         />
-        <EnhancementBox title="File I/O & exceptions — enhancements" items={[
-          'Read a CSV with open() and split lines; parse into a list of dicts (headers as keys).',
-          'Write a function that reads a file and returns its lines; use try/except for FileNotFoundError.',
-          'Use with open() for both read and write in one script; add finally to log "Done" even on error.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

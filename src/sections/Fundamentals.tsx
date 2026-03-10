@@ -1,7 +1,6 @@
 import CodeBlock, { DiagramBlock, InfoTable } from '../components/CodeBlock';
 import Callout from '../components/Callout';
 import { SparkStackInfographic } from '../components/InfographicCard';
-import EnhancementBox from '../components/EnhancementBox';
 
 export default function Fundamentals() {
   return (
@@ -64,12 +63,7 @@ Spark:      Memory → Transform → Memory → Action → Output (100x FASTER)`
             </div>
           ))}
         </div>
-        <EnhancementBox items={[
-          'Try Spark on a cloud provider (Databricks, EMR, or Azure Synapse) with a sample dataset.',
-          'Compare run time of a simple job with 1 partition vs 8 partitions (repartition).',
-          'Install and run the same hello_spark.py on WSL2 if you use Windows, and compare.',
-        ]} />
-      </div>
+</div>
 
       {/* Why Spark */}
       <div id="why-spark" className="mb-12">
@@ -267,12 +261,7 @@ df.printSchema()
 # STEP 5: Stop SparkSession
 spark.stop()`}
         />
-        <EnhancementBox title="Fundamentals & first app — enhancements" items={[
-          'Add a second DataFrame (e.g. products) and try a simple join before stopping the session.',
-          'Read a small CSV from C:/data/ and run show(), count(), and printSchema().',
-          'Time how long count() takes with cache() vs without, on a DataFrame used twice.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

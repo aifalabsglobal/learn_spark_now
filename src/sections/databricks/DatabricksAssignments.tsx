@@ -1,5 +1,4 @@
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksAssignments() {
   const assignments = [
@@ -31,12 +30,7 @@ export default function DatabricksAssignments() {
             </div>
           </div>
         ))}
-        <EnhancementBox title="Assignments — next steps" items={[
-          'Complete at least two assignments and document your solution (notebook or repo link).',
-          'Use Repos and version your notebook; run the same code via a Job on a schedule.',
-          'Share your Delta table or dashboard with a teammate and get feedback.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

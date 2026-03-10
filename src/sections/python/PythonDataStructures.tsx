@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PythonDataStructures() {
   return (
@@ -71,12 +70,7 @@ def get_min_max(arr):
 mn, mx = get_min_max([1, 5, 3])`}
           language="python"
         />
-        <EnhancementBox title="Data structures — enhancements" items={[
-          'Build a list of dicts (e.g. users with name and age), then filter with a list comprehension.',
-          'Use a set to remove duplicates from a list; time it vs list(dict.fromkeys(lst)).',
-          'Return a tuple from a function and unpack it; use * to unpack a list as arguments.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

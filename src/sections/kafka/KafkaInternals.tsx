@@ -1,6 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function KafkaInternals() {
   return (
@@ -35,12 +34,7 @@ Log segments (e.g. 000000000.log, 000000001.log)`}
           <li><strong className="text-slate-300">Zero-copy transfer</strong> — sendfile() avoids copying data to user space.</li>
         </ul>
         <p className="text-slate-500 text-xs mt-2">These mechanisms enable <strong className="text-slate-400">millions of messages per second</strong> throughput.</p>
-        <EnhancementBox title="Internals — enhancements" items={[
-          'Read the Kafka storage doc: segment files, indexes, and log retention (retention.ms, segment.ms).',
-          'Produce messages and inspect the topic directory on disk (if accessible); note segment rolling.',
-          'Compare throughput: produce with acks=0 vs acks=1 vs acks=all and observe latency/throughput tradeoff.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

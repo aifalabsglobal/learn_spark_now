@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function GitUndo() {
   return (
@@ -67,12 +66,7 @@ dist/
 .DS_Store`}
           language="bash"
         />
-        <EnhancementBox title="Undo & clean up — enhancements" items={[
-          'Make a dummy commit, then git reset --soft HEAD~1 and recommit with a better message.',
-          'Use git stash, switch branch, make a commit, switch back, git stash pop and resolve if needed.',
-          'Add .env and node_modules/ to .gitignore in a repo; run git status to confirm they are ignored.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

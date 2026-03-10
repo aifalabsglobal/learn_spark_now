@@ -1,6 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function KafkaReplication() {
   return (
@@ -36,12 +35,7 @@ export default function KafkaReplication() {
           <li>Observe leader election (check logs or describe topic).</li>
           <li>Verify consumers continue reading without data loss.</li>
         </ul>
-        <EnhancementBox title="Replication — enhancements" items={[
-          'Run a multi-broker Docker setup; create a topic with replication factor 2 or 3.',
-          'Stop one broker and verify leader election (describe topic); produce and consume during the failure.',
-          'Document ISR (in-sync replicas) and what happens when a replica falls out of ISR.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

@@ -1,6 +1,5 @@
 import CodeBlock, { DiagramBlock, InfoTable } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PythonFundamentals() {
   return (
@@ -125,12 +124,7 @@ is_student = True
 print(name, age)  # Alice 30`}
           language="python"
         />
-        <EnhancementBox title="Fundamentals — enhancements" items={[
-          'Use an f-string: print(f"Hello, {name}! You are {age} years old.") and run again.',
-          'Try the interactive REPL: type python (or python3) in the terminal with no file, then type print(2 + 3) and press Enter.',
-          'Create a second variable favorite_color and print it together with name.',
-        ]} />
-      </div>
+</div>
 
       {/* Variables & Types */}
       <div id="python-variables-types" className="mb-12">

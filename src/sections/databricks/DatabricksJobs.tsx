@@ -1,6 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DatabricksJobs() {
   return (
@@ -49,12 +48,7 @@ Task 2: Transform (notebook)
     ▼
 Task 3: Notify (e.g. Slack)`}
         </DiagramBlock>
-        <EnhancementBox title="Jobs — enhancements" items={[
-          'Create a job with one task (your notebook or a JAR); run it once and check the run output.',
-          'Add a second task that depends on the first; use task values to pass the run ID or path.',
-          'Set a schedule (e.g. daily) and add an email alert on failure; run and test notification.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 import { DiagramBlock } from '../../components/CodeBlock';
 
 export default function KafkaProducersConsumers() {
@@ -85,12 +84,7 @@ for msg in consumer:
           <li>Write a consumer that sends notifications (e.g. log or email).</li>
           <li>Simulate 1000 orders and verify end-to-end.</li>
         </ul>
-        <EnhancementBox title="Producers & consumers — enhancements" items={[
-          'Write a Python producer (kafka-python or confluent-kafka) that sends JSON order events with a key.',
-          'Write a consumer in the same or another language; run both and verify ordering per key.',
-          'Simulate 1000 orders and confirm both consumers (e.g. analytics and notifications) process all events.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

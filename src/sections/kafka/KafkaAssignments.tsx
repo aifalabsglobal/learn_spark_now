@@ -1,5 +1,4 @@
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function KafkaAssignments() {
   const assignments = [
@@ -30,12 +29,7 @@ export default function KafkaAssignments() {
             </div>
           </div>
         ))}
-        <EnhancementBox title="Assignments — next steps" items={[
-          'Complete the order pipeline: producer → topic → two consumers (analytics + notifications).',
-          'Run the failure simulation (stop a broker) and document leader election and consumer behavior.',
-          'Pick 5 interview questions from the list and write one-paragraph answers with examples.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

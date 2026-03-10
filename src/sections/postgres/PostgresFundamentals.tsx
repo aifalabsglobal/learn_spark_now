@@ -1,6 +1,5 @@
 import CodeBlock, { DiagramBlock, InfoTable } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PostgresFundamentals() {
   return (
@@ -114,12 +113,7 @@ export default function PostgresFundamentals() {
 SELECT datname FROM pg_database WHERE datistemplate = false;`}
           language="python"
         />
-        <EnhancementBox title="First query — enhancements" items={[
-          'Run SELECT version(); to see your PostgreSQL version.',
-          'Create a database: CREATE DATABASE mydb; then connect to it (in psql: \\c mydb).',
-          'List tables in the current database: \\dt (in psql) or SELECT * FROM information_schema.tables WHERE table_schema = \'public\';',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PythonFunctions() {
   return (
@@ -53,12 +52,7 @@ from os import path as os_path
 # mymodule.my_function()`}
           language="python"
         />
-        <EnhancementBox title="Functions & modules — enhancements" items={[
-          'Write a function with *args and **kwargs that prints all positional and keyword arguments.',
-          'Create a small module (e.g. utils.py) with two functions; import and call them from another file.',
-          'Use a default mutable argument carefully (e.g. def f(x, lst=[]) and see why lst=None and if not lst: lst=[] is safer).',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

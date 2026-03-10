@@ -1,6 +1,5 @@
 import CodeBlock, { DiagramBlock, InfoTable } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function GitFundamentals() {
   return (
@@ -118,12 +117,7 @@ git commit -m "Initial commit: add README"`}
         <p className="text-slate-400 text-sm mt-2">
           <code className="text-slate-300">git status</code> shows which files are staged (green) or untracked (red). Always write a clear commit message so you and others can understand the change later.
         </p>
-        <EnhancementBox title="First repo — enhancements" items={[
-          'Add a second file (e.g. main.py or notes.txt), run git add and git commit again.',
-          'Run git log and git log --oneline to see your commit history.',
-          'Edit README.md, then run git status, git diff, git add ., and git commit -m "Update README".',
-        ]} />
-      </div>
+</div>
 
       {/* Essential Commands */}
       <div id="git-basic-commands" className="mb-12">

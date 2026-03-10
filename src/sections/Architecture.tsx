@@ -1,7 +1,6 @@
 import CodeBlock, { DiagramBlock, InfoTable } from '../components/CodeBlock';
 import Callout from '../components/Callout';
 import InfographicCard from '../components/InfographicCard';
-import EnhancementBox from '../components/EnhancementBox';
 
 export default function Architecture() {
   return (
@@ -396,12 +395,7 @@ result = rdd.map(process_line).collect()
 print(f"Total records: {total_records.value}")   # 6
 print(f"Error count: {error_count.value}")       # 2`}
         />
-        <EnhancementBox title="Architecture & RDD — enhancements" items={[
-          'Use rdd.toDebugString() and paste the result; identify narrow vs wide dependencies.',
-          'Create an RDD, cache it, run count() twice, and compare timings in the Spark UI.',
-          'Broadcast a small dict and use it in a map; then do the same join without broadcast and compare stage breakdown.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

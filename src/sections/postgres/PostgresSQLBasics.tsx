@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PostgresSQLBasics() {
   return (
@@ -90,12 +89,7 @@ ORDER BY total_spent DESC;`}
         <p className="text-slate-400 text-sm mt-2">
           Here we only keep users with at least 2 orders (<code className="text-slate-300">HAVING COUNT(*) &gt;= 2</code>) and sort by total spend. Use <code className="text-slate-300">HAVING</code> when the filter depends on an aggregate; use <code className="text-slate-300">WHERE</code> when filtering individual rows before grouping.
         </p>
-        <EnhancementBox title="SQL basics — enhancements" items={[
-          'Create a sample table (users, orders), insert a few rows, then run SELECT with WHERE, ORDER BY, and LIMIT.',
-          'Practice INNER JOIN and LEFT JOIN on two related tables; compare the row counts.',
-          'Use GROUP BY with COUNT, SUM, AVG and add HAVING to filter groups; try with and without HAVING.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

@@ -1,7 +1,6 @@
 import CodeBlock, { DiagramBlock } from '../components/CodeBlock';
 import Callout from '../components/Callout';
 import { DataFlowInfographic } from '../components/InfographicCard';
-import EnhancementBox from '../components/EnhancementBox';
 
 export default function Streaming() {
   return (
@@ -321,12 +320,7 @@ q4 = events.writeStream \\
 
 spark.streams.awaitAnyTermination()`}
         />
-        <EnhancementBox title="Spark Streaming — enhancements" items={[
-          'Run the socket word-count example; then add a second query that writes the same stream to a Parquet path with checkpointLocation and verify files on restart.',
-          'Use Kafka with a small topic; try append vs update output mode and explain the difference in output.',
-          'Implement a streaming aggregation with watermark and event-time window; test with late data and confirm watermark drops old state.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

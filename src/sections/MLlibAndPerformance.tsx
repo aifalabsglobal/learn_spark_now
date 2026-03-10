@@ -1,7 +1,6 @@
 import CodeBlock, { DiagramBlock } from '../components/CodeBlock';
 import Callout from '../components/Callout';
 import InfographicCard from '../components/InfographicCard';
-import EnhancementBox from '../components/EnhancementBox';
 
 export function MLlib() {
   return (
@@ -381,12 +380,7 @@ df.explain()             # Simple plan
 df.explain(True)         # Extended plan
 df.explain("formatted")  # Formatted plan`}
         />
-        <EnhancementBox title="MLlib & Performance — enhancements" items={[
-          'Train a classification pipeline, run CrossValidator with a small param grid, and inspect bestModel params.',
-          'Apply salting to a skewed join (e.g. one key has 80% of rows) and compare task duration distribution in the UI.',
-          'Tune spark.sql.shuffle.partitions and spark.sql.adaptive.enabled on a large join and measure end-to-end time.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

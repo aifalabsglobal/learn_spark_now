@@ -1,6 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function ADFConcepts() {
   return (
@@ -61,12 +60,7 @@ Linked Service → connection to store or compute`}
         <p className="text-slate-400 text-sm mb-4">
           The <strong className="text-slate-300">Integration Runtime (IR)</strong> is the compute bridge between the pipeline and the linked services. Use <strong className="text-slate-300">Azure IR</strong> when source and sink are in Azure or publicly reachable; use <strong className="text-slate-300">self-hosted IR</strong> when you need to reach on-premises or network-restricted sources. <strong className="text-slate-300">Triggers</strong> start pipeline runs: schedule (cron), event (e.g. blob created), or manual. <strong className="text-slate-300">Parameters</strong> and <strong className="text-slate-300">variables</strong> let you pass configuration (e.g. environment, table name) and hold temporary values between activities.
         </p>
-        <EnhancementBox title="Concepts — enhancements" items={[
-          'In ADF UI, create a linked service (e.g. Azure Blob), a dataset pointing to a path, and a pipeline with one activity.',
-          'Add a schedule trigger to your pipeline and run it once manually; check the run history.',
-          'Read the Microsoft Learn module on pipelines, activities, datasets, and linked services.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

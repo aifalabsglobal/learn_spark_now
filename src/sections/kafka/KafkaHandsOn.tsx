@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function KafkaHandsOn() {
   return (
@@ -128,12 +127,7 @@ services:
 --bootstrap-server localhost:9092`}
           language="bash"
         />
-        <EnhancementBox title="Hands-on — enhancements" items={[
-          'Run Kafka in Docker (or Confluent), create a topic, produce and consume with console tools.',
-          'Produce 100 messages with a key; consume with --from-beginning and check partition distribution.',
-          'Use kafka-topics.sh --describe to see partition count, replication, and leader distribution.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

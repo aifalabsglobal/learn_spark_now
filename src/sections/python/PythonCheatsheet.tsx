@@ -1,6 +1,5 @@
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function PythonCheatsheet() {
   return (
@@ -41,11 +40,6 @@ export default function PythonCheatsheet() {
 # Useful: collections.defaultdict, itertools, json.loads/dumps`}
         language="python"
       />
-      <EnhancementBox title="Cheatsheet — practice" items={[
-        'Pick three built-ins and use them in a one-liner (e.g. sum, len, sorted).',
-        'Format a string with .format() and with an f-string; compare readability.',
-        'Import json and use json.loads() on a string; then json.dumps() back to a string.',
-      ]} />
-    </section>
+</section>
   );
 }

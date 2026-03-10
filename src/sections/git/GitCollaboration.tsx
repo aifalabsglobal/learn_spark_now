@@ -1,5 +1,4 @@
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function GitCollaboration() {
   return (
@@ -42,12 +41,7 @@ export default function GitCollaboration() {
         <p className="text-slate-400 text-sm mb-4">
           When two branches change the same lines, Git can&apos;t auto-merge. You must open the conflicted files, fix the <code className="text-slate-300">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> / <code className="text-slate-300">=======</code> / <code className="text-slate-300">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> markers, then <code className="text-slate-300">git add</code> and <code className="text-slate-300">git commit</code> (or complete the merge/rebase).
         </p>
-        <EnhancementBox title="Collaboration — enhancements" items={[
-          'Push a feature branch, open a PR to main on GitHub, and merge it (or practice with a teammate).',
-          'Intentionally create a merge conflict: edit the same line on two branches, then merge and resolve.',
-          'Review a PR: check the diff, leave a comment, and merge (or request changes).',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

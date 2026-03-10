@@ -1,5 +1,4 @@
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function ADFPipelinesActivities() {
   return (
@@ -58,12 +57,7 @@ export default function ADFPipelinesActivities() {
         <p className="text-slate-400 text-sm mb-4">
           Control activities orchestrate flow: <strong className="text-slate-300">For Each</strong>, <strong className="text-slate-300">If Condition</strong>, <strong className="text-slate-300">Execute Pipeline</strong>, <strong className="text-slate-300">Lookup</strong>, <strong className="text-slate-300">Get Metadata</strong>, <strong className="text-slate-300">Wait</strong>, <strong className="text-slate-300">Until</strong>, <strong className="text-slate-300">Set/Append Variable</strong>, <strong className="text-slate-300">Validation</strong>, <strong className="text-slate-300">Web/Webhook</strong>, <strong className="text-slate-300">Filter</strong>.
         </p>
-        <EnhancementBox title="Pipelines & activities — enhancements" items={[
-          'Build a pipeline with a Lookup activity followed by a Copy activity that uses the lookup result.',
-          'Add an If Condition to branch on a variable; use Set Variable and Append Variable in the pipeline.',
-          'Create a child pipeline and call it with Execute Pipeline; pass parameters and use the output.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }

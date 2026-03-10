@@ -1,6 +1,5 @@
 import { DiagramBlock } from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
-import EnhancementBox from '../../components/EnhancementBox';
 
 export default function DockerFundamentals() {
   return (
@@ -91,12 +90,7 @@ Containers: App → Container runtime (Docker) → Host OS → Hardware
           <li><strong className="text-slate-300">Local development (matching production)</strong> — Developers run the same stack (app, DB, cache) via Docker Compose. No “works on my machine” — everyone runs the same containers.</li>
           <li><strong className="text-slate-300">Legacy app isolation on a shared server</strong> — Run an old app in a container with its specific runtime and dependencies, without affecting other apps on the same host.</li>
         </ul>
-        <EnhancementBox title="Docker fundamentals — enhancements" items={[
-          'Install Docker Desktop (Windows/Mac) or Docker Engine (Linux) and run docker --version.',
-          'Run your first container: docker run hello-world. Then run docker ps -a to see it.',
-          'Pull the official Postgres image: docker pull postgres:16 and read the image description on Docker Hub.',
-        ]} />
-      </div>
+</div>
     </section>
   );
 }
